@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Corrects IE Compatibility Mode -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Heat-related Illness: NYC</title>
+
+    <!--
+    CSS is all hosted by the Core-Repo. Links will need to be updated for each project once merged or deployed.
+    This is also the case for main.js further below.
+    -->
+        
+    <!-- nyc-lib css (for maps in the core framework)-->
+    <link href="https://maps.nyc.gov/nyc-lib/v1.2.79/css/nyc-basic-lib.css" rel="stylesheet">
+
+    <!--Fontawesome Icons-->
+    <link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/fontawesome/css/all.min.css">
+    <!--NYC Core Framework Theme-->
+    <link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/css/theme.css">
+    <!--Custom additions for Portal items-->
+    <link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/css/custom.css">
+
+
+    <!--AQE styles-->
+    <link rel="stylesheet" href="css/aqe.css">
+
+
+                <script async src="https://www.googletagmanager.com/gtag/js?id=UA-28636785-1"></script>
+                <script>
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                
+                  gtag('config', 'UA-28636785-1');
+                </script>
+
+    
+
+
+
+
+</head>
+
+<body>
+    
+    <!-- For keyboard users -->
+    <a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
+
+    <header id="global-header" class="titleslide" role="banner" style="background-image: url(images/background.png);">
+
+        <div class="bg-black text-white" id="nyc-top-header">
+
+            <div class="container-fluid wide">
+
+                <div class="row py-1 align-items-center justify-content-between">
+
+                    <div class="col-auto">
+                        <p class="d-none d-md-flex fs-md">
+                            <a class="text-reset" href="https://www1.nyc.gov/">
+                                <strong>nyc.gov</strong>
+                            </a>
+                            <span class="mx-1" aria-hidden="true">|</span>
+                            Department of Health
+                        </p>
+                    </div>
+                    <!-- .col -->
+
+                    <div class="col-auto">
+
+                        <ul class="extensible-list horizontal fs-md">
+                            <li>
+                                <a class="text-reset" href="https://www1.nyc.gov/">
+                                    <strong>
+                                        311
+                                    </strong>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-reset" href="https://www1.nyc.gov/home/search/index.page">
+                                    <strong>
+                                        Search all NYC.gov
+                                    </strong>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www1.nyc.gov/" title="Go to nyc.gov">
+                                    <img class="d-block" src="https://nycehs.github.io/Portal-Core-Repo/images/nyc-bubble-logo.svg" width="45" alt="NYC Logo">
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- .col -->
+
+                </div>
+                <!-- .row -->
+
+            </div>
+            <!-- .container-fluid -->
+
+        </div>
+        <!-- #nyc-top-header -->
+
+
+        <div class="wrap-header">
+
+            <div class="container-fluid">
+
+                <div class="row align-items-center">
+
+                    <div class="col-lg py-2">
+                        <div class="d-flex justify-content-lg-start">
+                            <a class="align-self-center" href="#" title="Home">
+
+                                <!-- Placeholder logo, replace the following <svg> tag with your own image version -->
+                                    <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/">
+                                        <i class="fas fa-home"></i>&nbsp;EH Data Portal Home 
+                                    </a>
+
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <!-- .col -->
+
+                    <div class="col-lg-auto border-top border-lg-0">
+
+                        <div class="d-lg-flex align-items-center">
+
+                            <!-- Mobile Toggle Buttons -->
+
+                            <ul class="extensible-list horizontal justify-content-between my-2 d-lg-none">
+                                <li>
+                                    <button class="no-btn-style" type="button" data-toggle="collapse"
+                                        data-target="#global-language" aria-controls="global-language"
+                                        aria-expanded="false">
+                                        <span class="fas fa-language fa-lg" ></span>
+                                    </button>
+                                </li>
+
+
+                            </ul>
+
+                            <div class="collapse d-lg-block mx-n2 mx-lg-2" id="nav-primary">
+
+                            </div>
+
+                            <!-- Desktop Toggle Buttons -->
+
+                            <ul class="extensible-list horizontal d-none d-lg-flex">
+                                <li>
+                                    <button class="no-btn-style" type="button" title="Language" data-toggle="collapse"
+                                        data-target="#global-language" aria-controls="global-language"
+                                        aria-expanded="false">
+                                        <span class="sr-only">Language</span>
+                                        <span class="fas fa-language fa-lg" ></span>
+                                    </button>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                        <!-- .d-flex -->
+
+                    </div>
+                    <!-- .col -->
+
+                </div>
+                <!-- .row -->
+
+            </div>
+            <!-- .container-fluid -->
+
+        </div>
+        <!-- .wrap-header -->
+
+        <div class="container-fluid border-top collapse" id="global-language">
+            <div class="narrow py-2">
+                <div id="google_translate_element"></div>
+            </div>
+        </div>
+
+        <div class="container-fluid border-top collapse" id="global-search">
+            <form class="narrow py-2" aria-label="Search" role="search">
+                <div class="input-group">
+                    <label class="sr-only" for="global-search-bar">Search</label>
+                    <input class="form-control form-control-lg" id="global-search-bar" placeholder="Search">
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary btn-lg" type="button" title="Search">
+                            <span class="sr-only">Search</span>
+                            <span class="fas fa-arrow-right" ></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+
+    </header>
+    <!-- #global-header -->
+
+
+    <main id="skip-header-target" role="main" style="background-color:#f8f9fa;">
+
+
+<div class="container fs-sm">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Climate and Health</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Heat illness</li>
+            </ol>
+    
+        </nav>
+        
+
+        <a href="hvi.html"><button type="button" class="btn btn-light float-right">Heat Vulnerability Index</button></a>
+        <br>
+         
+
+    </div>
+
+    <div class="container fs-sm mt-3">
+        <div class="row no-gutters">
+            <div class="col-lg-7 mr-auto">
+                <h2>Near real-time heat-related illness data</h2>
+                <p>Extreme heat is dangerous. <a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/heat/Index.html">It can cause heat-related illness, make chronic conditions worse, and even kill</a>. The weather forecast is our best way to predict heat-related health outcomes. We can also track heat-related illness with near real-time electronic data from emergency departments at hospitals throughout NYC.  
+                    
+                    
+                   
+                <p>This is called <a href="#syndromicmodal" data-toggle="modal" class="badge badge-pill badge-warning">syndromic surveillance</a>, and it helps us track citywide trends. Typically, 10,000 people visit an emergency department (or ED, also called the emergency room) every day in NYC. When somebody visits the ED, they're examined, and asked to describe how they feel. These findings are recorded, and hospitals send these records to the Health Department. We search these records for diagnostic codes (when available) and words describing why patients are at the ED to track specific health conditions in near real-time.</p>
+
+                <p>Below are data on the number of <a href="#heatmodal" data-toggle="modal" class="badge badge-pill badge-warning">heat syndrome</a> visits to emergency departments, and the daily maximum temperature. <a href="#whatmodal" data-toggle="modal" class="badge badge-pill badge-warning">What do we use these data for</a>?</p></p>
+            </div>
+
+            <div class="col-lg-4 ml-auto">
+               <div class="mt-4" style="border-radius: 5px;">
+                
+                <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/?unit=us" data-label_1="NEW YORK CITY" data-label_2="WEATHER" data-theme="original" >NEW YORK CITY WEATHER</a>
+                <script>
+                !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                </script>
+                
+
+<div class="mt-2" style="background-color: #dcdcdc; padding: 7px 7px; border-radius: 5px;">
+   <p>In NYC, an <strong>extreme heat event</strong> is two or more days with a heat index reaching 95 °F, or one or more days reaching 100 °F.</div>
+    <!--
+    <div class="mt-2" style="background-color: #dcdcdc; padding: 7px 7px; border-radius: 5px;">Get a <strong>weather forecast</strong> from the National Weather Service for your area at <a href="https://www.weather.gov/">weather.gov</a>.</div>-->
+    <div class="mt-2" style="background-color: #dcdcdc; padding: 7px 7px; border-radius: 5px;">
+     To learn more about heat and health, visit <a href="https://www1.nyc.gov/site/doh/health/emergency-preparedness/emergencies-extreme-weather-heat.page">Extreme Heat and Health</a>. To stay safe in the heat, visit <a href="https://www1.nyc.gov/assets/em/html/beat-the-heat/beattheheat.html">Beat the Heat</a>.</p>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+  <!-- Syndromic modal -->
+  <div class="modal fade" id="syndromicmodal" tabindex="-1" role="dialog" aria-labelledby="syndromicmodaltitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="privacymodallongtitle">Syndromic surveillance</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>The Centers for Disease Control and Prevention (CDC) defines surveillance as "the ongoing, systematic collection, analysis, and interpretation of health-related data essential to planning, implementation, and evaluation of public health practice, closely integrated with the timely dissemination of these data to those responsible for prevention and control." A syndrome is a group of signs (something a health care provider can observe, like a rash, or body temperature) and symptoms (something a patient feels - like pain, or fatigue) that are often associated with a particular disease or condition.</p>
+            <p>The heat syndrome is identified in surveillance data by looking for diagnostic codes for heat-related illness  and by searching  chief complaints (descriptions of why patients are at the ED) for words related to heat, such as overheating, sunstroke, and similar terms.</p>
+            <p>Syndrome data are inherently non-specific and are not based on diagnostic testing. While the NYC syndromic surveillance system captures data on 100% of ED visits in the city (as of 5/1/16), the data are not comprehensive because some residents seek care outside the city. These data are not exact measures and should be used to understand trends, rather than to count cases. In addition, recent data are not final and are subject to change. 
+                </p>
+                <p>For more syndromes tracked by the Health Department, visit <a href="https://a816-health.nyc.gov/hdi/epiquery/visualizations?PageType=ps&PopulationSource=Syndromic">EpiQuery</a>.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Heat syndrome modal -->
+      <div class="modal fade" id="heatmodal" tabindex="-1" role="dialog" aria-labelledby="heatmodaltitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="heatmodallongtitle">Heat syndrome</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p>The heat syndrome is identified in surveillance data by looking for diagnostic codes for heat-related illness  and by searching  chief complaints (descriptions of why patients are at the ED) for words related to heat, such as overheating, sunstroke, and similar terms.</p>
+                <p>Syndromic data are inherently non-specific and are not based on diagnostic testing. While the NYC syndromic surveillance system captures data on 100% of ED visits in the city (as of 5/1/16), the data are not comprehensive because some residents seek care outside the city. These data are not exact measures and should be used to understand trends, rather than to count cases. In addition, recent data are not final and are subject to change. 
+                </p>
+                <p>For more information, see the Council of State and Territorial Epidemiologists' <a href="https://cdn.ymaws.com/www.cste.org/resource/resmgr/pdfs/pdfs2/CSTE_Heat_Syndrome_Case_Defi.pdf">heat syndrome case definition</a>.</p>
+                </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- What modal -->
+    <div class="modal fade" id="whatmodal" tabindex="-1" role="dialog" aria-labelledby="whatmodaltitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="whatmodallongtitle">What do we use these data for?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p>Tracking heat-related illness (HRI) in near-real time can help provide situational awareness, supplementing the weather forecast as an indicator of public health risk. HRI detected in emergency department syndromic surveillance data are strongly associated with hot weather and highly correlated with daily counts of HRI hospital discharge data. However, HRI counts detected in the ED syndromic surveillance data represent suspected rather than confirmed illness and is useful to track trends. Some records may be counted as cases when they are not HRI, while other HRI cases may go undetected due to differences in hospital coding practices or because of what patients say when they describe what is bothering them.
+                </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <div class="row mt-4" style="background-color:#dcdcdc; padding: 10px; border-radius: 5px;">
+    <h3>Annual data</h3>
+    </div>
+
+<div class="row mt-2">
+    Select a year to view data: &nbsp;&nbsp;
+    <input type="radio" name="syn" onclick="udata(2021)" id="2021"checked="checked"><label for="2021">&nbsp;2021</label> &nbsp;&nbsp;&nbsp;
+    <input type="radio" name="syn" onclick="udata(2020)" id="2020"><label for="2020">&nbsp;2020</label> &nbsp;&nbsp;&nbsp;
+    <input type="radio" name="syn" onclick="udata(2019)" id="2019"><label for="2019">&nbsp;2019</label> &nbsp;&nbsp;&nbsp;
+    <input type="radio" name="syn" onclick="udata(2018)" id="2018"/><label for="2018">&nbsp;2018</label> &nbsp;&nbsp;&nbsp;
+    <input type="radio" name="syn" onclick="udata(2017)" id="2017"><label for="2017">&nbsp;2017</label>&nbsp;&nbsp;&nbsp;
+
+</div>
+    
+
+
+
+<div id="if2021" style="display:block" class="row border-bottom my-2">
+    <iframe title="2021 Heat ED Visits" aria-label="Interactive line chart" id="datawrapper-chart-tfWhM" src="https://datawrapper.dwcdn.net/tfWhM/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+    </script>
+</div>
+
+<div id="if2020" style="display:none" class="row border-bottom my-2">
+    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-AOztc" src="https://datawrapper.dwcdn.net/AOztc/15/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="800"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+    </script>
+
+</div>
+
+<div id="if2019" style="display:none" class="row border-bottom my-2">
+    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-Rokvl" src="//datawrapper.dwcdn.net/Rokvl/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="800"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+    </script>
+
+ </div>
+ 
+
+
+
+<div id="if2018" style="display:none" class="row border-bottom my-2">
+    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-KGk7o" src="//datawrapper.dwcdn.net/KGk7o/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="800"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+    </script>
+
+ </div>
+
+ <div id="if2017" style="display:none" class="row border-bottom my-2">
+    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-pDamD" src="//datawrapper.dwcdn.net/pDamD/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="800"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+    </script>
+
+ </div>
+
+ <div id="ifScatter" style="display:none" class="row border-bottom my-2">
+
+</div>
+
+<div class="row my-2 fs-sm">
+    <em>Max daily temperature is the heat index or temperature, whichever is higher, as recorded by the National Weather Service weather station at La Guardia Airport.</em>    
+    </div>
+
+
+<div class="row mt-4" style="background-color:#dcdcdc; padding: 10px; border-radius: 5px;">
+    <H4>Data from 2017 to 2020</H4>
+</div>
+
+<div class="row my-2 fs-sm">
+    <iframe title="Heat-related ED visits: 2017 to 2020" aria-label="chart" id="datawrapper-chart-J1qiq" src="https://datawrapper.dwcdn.net/J1qiq/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+    </script>
+
+</div>
+
+
+<div class="row mt-4" style="background-color:#dcdcdc; padding: 10px; border-radius: 5px;">
+    <a href="https://github.com/nychealth/heat-syndrome-data">To download data and for additional documentation, please see our Github repository</a>.
+    </div>
+
+
+
+
+<!--
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card mt-2">
+
+          <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                  <em>Notes on this year's trends in heat-related illness</em>
+              </li>
+
+
+
+              <li class="list-group-item">
+                    INSERT NEW ANNOTATION HERE
+                </li>
+
+
+
+            <li class="list-group-item">
+          5/21: in recent weeks, visits to the ED have been much lower than normal as the COVID-19 public health emergency has led people to seek care for other illnesses less frequently. This may affect counts moving forward, as people may avoid seeking care for heat-related illness. 
+            </li>
+
+          </ul>
+        </div>
+    </div>
+</div>
+-->
+
+
+
+ <script>
+
+        function udata(x) {
+            document.getElementById('if2021').style.display = "none";
+            document.getElementById('if2020').style.display = "none";
+            document.getElementById('if2019').style.display = "none";
+            document.getElementById('if2018').style.display = "none";
+            document.getElementById('if2017').style.display = "none";
+            document.getElementById('ifScatter').style.display = "none";
+
+            if (x == 2017) {
+                document.getElementById('if2017').style.display = "block";
+            } else if (x==2018) {
+                document.getElementById('if2018').style.display = "block";
+            } else if (x==2019) {
+                document.getElementById('if2019').style.display = "block";
+            } else if (x==2020) {
+                document.getElementById('if2020').style.display = "block";
+            } else if (x==2021) {
+                document.getElementById('if2021').style.display = "block";
+            } else {
+                document.getElementById('ifScatter').style.display = "block";
+            }
+
+        }
+
+
+
+
+
+ </script>
+
+
+
+
+</div>
+
+
+
+
+
+
+      <br><br><br>
+        
+    </main>
+
+    <footer class="bg-black" id="global-footer" role="contentinfo">
+
+        <h2 class="sr-only">
+            Page Footer
+        </h2>
+
+        <div class="bg-opacity-black-25 text-white" id="nyc-footer">
+
+            <div class="container py-3 d-none" id="languages">
+
+                <div class="row fs-md">
+
+                    <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                        <ul class="extensible-list">
+                            <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+                            <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                        <ul class="extensible-list">
+                            <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+                            <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                        <ul class="extensible-list">
+                            <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+                            <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg mb-2 mb-lg-0">
+                        <ul class="extensible-list">
+                            <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+                            <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-4 col-lg">
+                        <ul class="extensible-list">
+                            <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+                            <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <!-- #languages -->
+
+            <div class="container py-3" id="languages">
+
+                <ul class="fs-md" role="list">
+                    <li><a class="lang-select text-reset" href="#" data-lang="ar">عربى</a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="bn">বাঙালি</a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="zh-CN">中文</a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="fr">français</a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="ht">Kreyòl Ayisyen</a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="ko">한국어</a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="pl">Polskie</a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="ru">русский</a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="es">Español</a></li>
+                    <li><a class="lang-select text-reset" href="#" data-lang="ur">اردو</a></li>
+                </ul>
+
+            </div>
+            <!-- #languages -->
+
+            <hr class="opacity-10" aria-hidden="true">
+
+            <div class="container py-3">
+
+                <div class="row">
+
+                    <div class="col-md-6 col-lg-8 mb-3 mb-lg-0">
+
+                        <nav class="row fs-md" role="navigation">
+
+                            <div class="col-lg mb-3 mb-lg-0">
+
+                                <ul class="extensible-list">
+                                    <li>
+                                        <a class="text-reset" href="https://www1.nyc.gov/nyc-resources/agencies.page">
+                                            <strong>City Agencies</strong>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="text-reset" href="https://a858-nycnotify.nyc.gov/notifynyc/">
+                                            <strong>Notify NYC</strong>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="text-reset"
+                                            href="https://www1.nyc.gov/connect/mobile-applications.page">
+                                            <strong>NYC Mobile Apps</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- .col -->
+
+                            <div class="col-lg mb-3 mb-lg-0">
+
+                                <ul class="extensible-list">
+                                    <li>
+                                        <a class="text-reset" href="https://www1.nyc.gov/home/contact-us.page">
+                                            <strong>Contact NYC Government</strong>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="text-reset" href="https://a856-citystore.nyc.gov/">
+                                            <strong>CityStore</strong>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="text-reset" href="https://maps.nyc.gov/doitt/nycitymap/">
+                                            <strong>Maps</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <!-- .col -->
+
+                            <div class="col-lg mb-3 mb-lg-0">
+
+                                <ul class="extensible-list">
+                                    <li>
+                                        <a class="text-reset"
+                                            href="https://a127-ess.nyc.gov/psp/prdess/?cmd=login&languageCd=ENG&">
+                                            <strong>City Employees</strong>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="text-reset" href="https://www1.nyc.gov/connect/social-media.page">
+                                            <strong>Stay Connected</strong>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="text-reset"
+                                            href="https://www1.nyc.gov/nyc-resources/resident-toolkit.page">
+                                            <strong>Resident Toolkit</strong>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <!-- .col -->
+
+                        </nav>
+
+                    </div>
+                    <!-- .col -->
+
+                    <div class="col-md-6 col-lg-4">
+
+                        <a class="mb-2" href="https://www1.nyc.gov" title="Go to nyc.gov" target="_blank">
+                            <img class="mb-2" src="https://nycehs.github.io/Portal-Core-Repo/images/nyc-bubble-logo.svg" width="90" alt="NYC Logo">
+                        </a>
+                        <p class="fs-sm">City of New York - 2019 All Rights Reserved. NYC is a trademark and service
+                            mark of the City of New York.</p>
+
+                        <ul class="extensible-list horizontal fs-sm">
+                            <li>
+                                <a class="text-reset" href="https://www1.nyc.gov/home/privacy-policy.page">Privacy
+                                    Policy</a>
+                            </li>
+                            <li>
+                                <a class="text-reset" href="https://www1.nyc.gov/home/terms-of-use.page">Terms
+                                    of Use</a>
+                            </li>
+                            <li>
+                                <a class="text-reset" href="https://www1.nyc.gov/site/mopd/index.page"
+                                    title="Mayor's Office for People with Disabilities">
+                                    <span class="sr-only">Mayor's Office for People with Disabilities</span>
+                                    <span class="fab fa-lg fa-accessible-icon"></span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- .col -->
+
+                </div>
+                <!-- .row -->
+
+            </div>
+            <!-- .container -->
+
+        </div>
+        <!-- #nyc-bottom-footer -->
+
+    </footer>
+
+<!--Required charting scripts-->
+
+     <!-- jQuery (full, compressed version) -->
+     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+     <!-- Popper.js and Bootstrap JS -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+ 
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- support for IE compatibility, esp. for vega -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.11/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.8.7/polyfill.js"></script>
+    <script src="https://vega.github.io/vega/assets/promise.min.js"></script>
+    <script src="https://vega.github.io/vega/assets/symbol.min.js"></script>
+    <script src="https://vega.github.io/vega/assets/fetch.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/vega@5/build-es5/vega.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4/build-es5/vega-lite.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6/build-es5/vega-embed.js"></script>
+  <!-- vega dataviz -->
+  <!--  <script src="https://cdn.jsdelivr.net/npm/vega@4.3"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@4"></script>    -->
+
+  <!-- Google Translate -->
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
+    </script>
+
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- NYC template JS (RTL, search and language toggle, back to top)  -->
+    <script src="https://nycehs.github.io/Portal-Core-Repo/js/main.js"></script>
+
+    <!-- NYC Core Framework Map dependencies  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.4.4/proj4.js"></script>
+    <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.4.0/papaparse.min.js"></script>
+    <!-- <script src="https://maps.nyc.gov/nyc-lib/v1.3.68/js/babel-polyfill.js"></script> THIS polyfill is included earlier-->
+    <script src="https://maps.nyc.gov/nyc-lib/v1.3.68/js/nyc-ol-lib.js"></script>
+    
+  <!--This script makes the modal fed from an HTML file-->
+  <script>
+    $('.li-modal').on('click', function(e){
+      e.preventDefault();
+      $('#theModal').modal('show').find('.modal-content').load($(this).attr('href'));
+    });
+  </script>
+
+    <!--Script that makes collapsed button content hide on selection of another button-->
+    <script>jQuery('button').click( function(e) {
+		jQuery('.collapse').collapse('hide');
+	});</script>
+
+
+
+
+
+<!-- // Locator Map  
+<script>
+        var map = new nyc.ol.FrameworkMap({
+        mapTarget: '#mapLocator',
+        startAt: '125 Worth Street',
+        geoclientUrl: 'https://maps.nyc.gov/geoclient/v1/search.json?app_key=74DF5DB1D7320A9A2&app_id=nyc-lib-example'
+      });
+      </script>
+-->
+
+</body>
+
+</html>

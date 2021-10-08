@@ -1,0 +1,63 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": "container",
+  "height": "container",
+  "autosize": {"type": "fit", "contains": "padding"},
+  "layer":[
+    {
+    "data":{
+    "url": "https://raw.githubusercontent.com/nycehs/NYC_geography/master/NTA.topo.json",
+    "format": {"type": "topojson", "feature": "collection"}
+    },
+    "mark": {"type": "geoshape", "stroke": "#ffffff","fill":"lightgray"}
+  },{
+  "data": {
+    "url": "https://raw.githubusercontent.com/nycehs/NYC_geography/master/NTA.topo.json",
+    "format": {"type": "topojson", "feature": "collection"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.NTACode",
+      "from": {
+        "data": {"url": "HVI_DATA.csv"},
+        "key": "NTACODE",
+        "fields": [
+          "NTACODE",
+          "NTANAME",
+          "HVI_RANK"
+        ]
+      },
+      "default": "no data"
+    }
+  ],
+  "selection": {
+    "highlight": {"type": "single", "empty": "none", "on": "mouseover"}
+  },
+  "mark": {"type": "geoshape", "stroke": "#ffffff"},
+  "encoding": {
+    "color": {
+      "bin": false,
+      "field": "HVI_RANK",
+      "type": "ordinal",
+      "legend":null,
+      "scale": {"scheme": {"name": "redpurple", "extent": [0, 1.25]}}
+    },
+    "strokeWidth": {
+      "condition": [{"selection": "highlight", "value": 2}],
+      "value": 0.5
+    },
+    "tooltip": [
+      {
+        "field": "NTANAME",
+        "type": "nominal",
+        "title": "Neighborhood"
+      },
+      {
+        "field": "HVI_RANK",
+        "type": "quantitative",
+        "title": "HVI score:"
+      }
+    ]
+  }
+}]
+}
