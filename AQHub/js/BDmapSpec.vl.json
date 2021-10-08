@@ -1,0 +1,49 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "width": "container",
+    "height": "container",
+    "config": {
+      "legend": {
+        "orient":"bottom"
+         },
+         "range": {
+           "ordinal": [
+            "#ffc2ff",
+            "#cc59ca",
+            "#6e1e93"
+           ]
+         },
+         "style": {
+           "cell": {
+             "stroke": "transparent"
+           }
+         }
+         },
+    
+    "data": {
+      "url": "https://grantpezeshki.github.io/NYC-topojson/NTA.json",
+      "format": {
+        "type": "topojson",
+        "feature": "collection"
+      }
+    },
+    "transform": [{
+      "lookup": "properties.NTACode",
+      "from": {
+        "data": {
+          "url": "./data/NTA_tertilesWpm_no2.csv"
+        },
+        "key": "NTACode",
+        "fields": ["tertile_buildingdensity","NTAName"]
+      }
+    }],
+    "mark": "geoshape",
+    "encoding": {
+          "tooltip": {"field": "NTAName",
+            "type": "ordinal"},
+          "color": {
+            "field": "tertile_buildingdensity",
+            "type": "ordinal","legend":null
+          }
+    }
+  }

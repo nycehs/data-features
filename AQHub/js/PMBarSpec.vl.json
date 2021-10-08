@@ -1,0 +1,38 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "description": "A simple bar chart with named data.",
+  "config": {"scale": {"barBandPaddingInner": 0},
+            "style": {"cell": {"stroke": "transparent"}}  
+}, 
+            
+  "width": "container",
+  "height": 150,
+  "selection": {
+    "ntaField": {
+      "type": "single",
+      "empty": "none",
+      "fields": ["NTACode"]
+    }
+  },
+  "data": {"name": "nyccasData"},
+  "mark": {"type": "bar"},
+  "encoding": {
+    "x": {
+      "field": "NTACode",
+      "type": "ordinal",
+      "axis": null,
+      "sort": {"field": "Avg_annavg_PM25"}
+    },
+    "y": {
+      "field": "Avg_annavg_PM25",
+      "type": "quantitative",
+      "axis": {"title": "PM 2.5"}
+    },
+    "color": {
+      "condition": {"selection": "ntaField", "value": "orange"},
+      "value": "grey"
+    },
+    "tooltip": [{"field": "Avg_annavg_PM25","type": "quantitative"},
+      {"field": "NTAName"}]
+  }
+}

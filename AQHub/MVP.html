@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Neighborhood Selector</title>
+
+    <style>
+      html {
+        font-family: sans-serif;
+      }
+
+      body {
+        margin: 0 auto;
+      }
+
+    </style>
+    
+    <!--    <script src="./js/d3-fetch.v1.min.js"></script> 
+    <script src="./js/d3-dsv.v1.min.js"></script>-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@5"></script>
+  </head>
+
+  <body>
+    <h1>MVP</h1>
+
+    <p>Please select a neighborhood (try BK09).</p>
+
+    <div id="form" class="form">
+      <label for="ntaField">Enter an NTA code: </label>
+      <input type="text" id="ntaField" class="ntaField" value="MN24">
+      <input type="submit" id="ntaSubmitButton" value="Submit NTA code" class="ntaSubmit">
+    </div>
+
+    <div class="resultParas">
+      <p id="NTA">poop</p>
+      <p id="PM"></p>
+      <p id="NO2"></p>
+      <p id="BuildingEmissions"></p>
+      <p id="BuildingDensity"></p>
+      <p id="TrafficDensity"></p>
+      <p id="Industrial"></p>
+    </div>
+    <div id=BEmap style="width: 90vmin; height: 120vmin;"></div>
+    <div id=NOmap style="width: 100%;"></div>
+    <div id=PMbar style="width: 100%;"></div>
+    <div id=NObar style="width: 100%;"></div>
+
+   <script src='js/MVP.js'></script>
+    </body>
+</html>

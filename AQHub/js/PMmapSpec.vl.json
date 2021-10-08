@@ -1,0 +1,37 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": "container",
+  "height": "container",
+    "config": {
+      "legend": {
+        "orient":"bottom"
+         }
+      },
+    
+    "data": {
+      "url": "https://grantpezeshki.github.io/NYC-topojson/NTA.json",
+      "format": {
+        "type": "topojson",
+        "feature": "collection"
+      }
+    },
+    "transform": [{
+      "lookup": "properties.NTACode",
+      "from": {
+        "data": {
+          "url": "./data/NTA_tertilesWpm_no2.csv"
+        },
+        "key": "NTACode",
+        "fields": ["Avg_annavg_PM25"]
+      }
+    }],
+    "mark": "geoshape",
+    "encoding": {
+          "tooltip": {"field": "Avg_annavg_PM25",
+            "type": "quantitative"},
+          "color": {
+            "field": "Avg_annavg_PM25",
+            "type": "quantitative"
+          }
+    }
+  }

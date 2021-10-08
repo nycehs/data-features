@@ -1,0 +1,102 @@
+{"$schema": "https://vega.github.io/schema/vega/v5.0.json",
+      "description": "A simple bar chart with embedded data.",
+      "title": "Don't Look Like a Vega Chart But I Am",
+      "autosize": "pad",
+      "padding": 5,
+      "background": "#cec",
+      "signals": [
+        {
+          "name": "width",
+          "update": "300"
+        },
+        {
+          "name": "height",
+          "update": "200"
+        },
+        {
+          "name": "textlabel",
+          "value": "Click on one of the buttons above.",
+          "on": [
+            {
+              "events": ".btn:click",
+              "update": "event.currentTarget.value",
+              "force":  true
+            }
+          ]
+        },
+        {
+          "name": "ntaCode",
+          "value": "BK17"
+        },
+        {
+          "name": "xmove",
+          "value": 12,
+          "on": [
+            {
+              "events": "mousemove",
+              "update": "x()",
+              "force": true
+            }
+          ]
+        },
+        {
+          "name": "clock",
+          "on": [
+            {
+              "events": "window:updateclock",
+              "update": "event.detail.time"
+            }
+          ]
+        }
+      ],
+      "marks": [
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {"value": 0},
+              "y": {"value": 0}
+            },
+            "update": {
+            	"text": {"signal": "textlabel"}
+        		}
+        	}
+        },
+        {
+            "type": "text",
+            "encode": {
+              "enter": {
+                "x": {"value": 0},
+                "y": {"value": 20}    
+              },
+              "update": {
+                  "text": {"signal": "ntaCode"}
+                  }
+              }
+          },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {"value": 0},
+              "y": {"value": 40}
+            },
+            "update": {
+              "text": {"signal": "xmove"}
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {"value": 0},
+              "y": {"value": 60}
+            },
+            "update": {
+              "text": {"signal": "clock"}
+            }
+          }
+        }
+      ]
+    }
