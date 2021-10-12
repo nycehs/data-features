@@ -220,28 +220,39 @@
 
 
 
-        <div class="container-fluid fs-sm">
+        <div class="container fs-sm">
             <div class="row mb-2">
-                <div class="col-lg-11 mx-auto">
+                <div class="col-lg-12">
                         <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="https://a816-dohbesp.nyc.gov/IndicatorPublic/">EH Data Portal Home
+                                </a></li>
                                     <li class="breadcrumb-item"><a href="index.html">Air Quality hub</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">AQ Explorer</li>
                                 </ol>
             
                             </nav>
-
-
-
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-7 mx-auto">
-                    <h3>Neighborhood air quality explorer</h3>
+                <div class="col-md-12">
+                    <a href="realtime.html">
+                        <button type="button" class="btn btn-secondary btn-sm float-right">Real-time air quality</button></a>
+                    <h2>Neighborhood Air Quality</h2>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-md-6">
+
                     <p>We combine data from our air quality monitoring network, NYCCAS, with other data to understand what makes one neighborhood's air quality different from another's. We found that building emissions, building density, industrial areas, and traffic density are associated with differences in air quality.</p>
                     <p>If we don't have an air quality monitor in one neighborhood, but we know its building density, its industrial area, and its traffic, then we can <em>model</em> (estimate or predict) its air quality - based on monitored air quality in similar neighborhoods. </p>
+                
 
+                </div>
+
+                <div class="col-md-6">
                     <form id="nta-form">
                         <label for="last-neighborhood"><strong>Get air quality data for your neighborhood:</strong></label>
                         <div class="autocomplete-wrapper" style="display:inline-block;width:79%;">
@@ -455,17 +466,19 @@
                         <p id="NTA"></p> 
                         <p><em>This is a Neighborhood Tabulation Area (NTA). <a href="https://www1.nyc.gov/site/planning/data-maps/open-data/dwn-nynta.page">Read about NTAs and other geographies.</a></em> </p>
                     </div>
-
                 </div>
 
             </div>
 
-    </div>
-    <div class="container-fluid fs-sm mt-4">
+        </div>
 
+
+
+        <div class="container fs-sm mt-4">
+            <hr>
 
             <div class="row">
-                <div class="col-lg-5 my-2 ml-auto">
+                <div class="col-lg-6 my-2">
                     <h5><i class="fas fa-smog"></i>&nbsp;Air quality in your neighborhood </h5>
                     
                 <div class="card">
