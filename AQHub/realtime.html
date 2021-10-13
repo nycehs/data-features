@@ -37,8 +37,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vega@5/build-es5/vega.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@4/build-es5/vega-lite.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6/build-es5/vega-embed.js"></script>
-        <!--D3-->
-        <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!--D3-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
 
 </head>
 
@@ -243,12 +243,12 @@
             <div class="row mt-2">
                 <div class="col h-100">
                     <div class="row">
-                        <button onclick="restore()" type="button" class="selectorbtn btn btn-sm btn-light-outline btn-light">Show all</button>
-                        <button onclick="changeData(0)" type="button" class="selectorbtn btn btn-sm btn-light-outline">Broadway/35th</button>
-                        <button onclick="changeData(1)" type="button" class="selectorbtn btn btn-sm btn-light-outline">Cross Bronx Expwy</button>
-                        <button onclick="changeData(2)" type="button" class="selectorbtn btn btn-sm btn-light-outline">Queensboro Bridge</button>
-                        <button onclick="changeData(3)" type="button" class="selectorbtn btn btn-sm btn-light-outline">Williamsburg Bridge</button>
-                        <button onclick="changeData(4)" type="button" class="selectorbtn btn btn-sm btn-light-outline">Manhattan Bridge</button>
+                        <button onclick="restore()" type="button" id="btnrestore" class="selectorbtn btn btn-sm btn-light-outline btn-light">Show all</button>
+                        <button onclick="changeData(0)" type="button" id="btn0" class="selectorbtn btn btn-sm btn-light-outline">Broadway/35th</button>
+                        <button onclick="changeData(1)" type="button" id="btn1"  class="selectorbtn btn btn-sm btn-light-outline">Cross Bronx Expwy</button>
+                        <button onclick="changeData(2)" type="button" id="btn2" class="selectorbtn btn btn-sm btn-light-outline">Queensboro Bridge</button>
+                        <button onclick="changeData(3)" type="button" id="btn3" class="selectorbtn btn btn-sm btn-light-outline">Williamsburg Bridge</button>
+                        <button onclick="changeData(4)" type="button" id="btn4" class="selectorbtn btn btn-sm btn-light-outline">Manhattan Bridge</button>
                     </div>
 
                     <div class="row">
@@ -258,35 +258,6 @@
                     </div>
                 </div>
             </div>
-
-            <script>
-                var buttons = document.querySelectorAll('.selectorbtn');
-
-                function changeData(x) {
-
-                    // remove active class from buttons
-                    buttons.forEach(button => button.classList.remove('btn-light'))
-
-                    // make all lines gray
-                    for (let i = 0; i < 5; i++) {
-                        spec.layer[i].encoding.color = "gray"
-                      };
-
-                    spec.layer[x].encoding.color = "purple"
-
-                    console.log(spec);
-
-                    }
-
-
-                    //for selected:
-                        // add btn-light to selected button
-                        // change color to SOMETHING
-                        // change point to true
-                
-
-            </script>
-
             <hr>
 
             <div class="row mt-6">
@@ -655,220 +626,270 @@
 
 
 
-    <!--Chart spec-->
-    <script>
+<!--Chart spec-->
+<script>
 
-        var spec = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-            "description": "Test rate over time",
-            "width": "container",
-            "height": "container",
-            "config": {
-                "background": "#ffffff00",
-                "axisX": {
-                    "grid": false,
-                    "ticks": true,
-                    "labels": true
-                },
-                "axisY": {
-                    "domain": false,
-                    "ticks": false,
-                    "gridDash": [
-                        2
-                    ],
-                    "gridWidth": 1
-                },
-                "view": {
-                    "stroke": "transparent"
-                }
+
+// establish the original spec. 
+const origSpec = {
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+"description": "Real-time air quality",
+"width": "container",
+"height": "container",
+"config": {
+    "background": "#ffffff00",
+    "axisX": {
+        "grid": false,
+        "ticks": true,
+        "labels": true
+    },
+    "axisY": {
+        "domain": false,
+        "ticks": false,
+        "gridDash": [
+            2
+        ],
+        "gridWidth": 1
+    },
+    "view": {
+        "stroke": "transparent"
+    }
+},
+"data": {
+    "url": "https://gist.githubusercontent.com/mmontesanonyc/19245e58b9ba8dca738edbd3ef0af43f/raw/48cb92f783b07a3299a94ec16dffa223ddbc19f3/RT_flat.csv"
+    },
+"layer": [
+    {
+        "mark": {
+            "type": "line",
+            "point": false,
+            "tooltip": true,
+            "interpolate": "natural",
+            "strokeWidth": 1.5
+        },
+        "encoding": {
+            "x": {
+                "field": "starttime",
+                "type": "temporal",
+                "title": " "
             },
-            "data": {
-              "url": "https://gist.githubusercontent.com/mmontesanonyc/19245e58b9ba8dca738edbd3ef0af43f/raw/48cb92f783b07a3299a94ec16dffa223ddbc19f3/RT_flat.csv"
-                },
-            "layer": [
+            "y": {
+                "field": "Broadway/35th St",
+                "type": "quantitative",
+                "title": " "
+            },
+            "color": {
+                "value": "darkgray"
+            },
+            "tooltip": [
                 {
-                    "mark": {
-                        "type": "line",
-                        "point": false,
-                        "tooltip": true,
-                        "interpolate": "natural",
-                        "strokeWidth": 1.5
-                    },
-                    "encoding": {
-                        "x": {
-                            "field": "starttime",
-                            "type": "temporal",
-                            "title": " "
-                        },
-                        "y": {
-                            "field": "Broadway/35th St",
-                            "type": "quantitative",
-                            "title": " "
-                        },
-                        "color": {
-                            "value": "gray"
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Broadway/35th St",
-                                "title": "Broadway and 35th St"
-                            },
-                            {
-                                "field": "starttime",
-                                "type": "temporal",
-                                "title": "Time"
-                            }
-                        ]
-                    }
+                    "field": "Broadway/35th St",
+                    "title": "Broadway and 35th St"
                 },
                 {
-                    "mark": {
-                        "type": "line",
-                        "point": false,
-                        "tooltip": true,
-                        "interpolate": "natural",
-                        "strokeWidth": 1.5
-                    },
-                    "encoding": {
-                        "x": {
-                            "field": "starttime",
-                            "type": "temporal",
-                            "title": " "
-                        },
-                        "y": {
-                            "field": "Cross Bronx Expy",
-                            "type": "quantitative",
-                            "title": " "
-                        },
-                        "color": {
-                            "value": "purple"
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Cross Bronx Expy",
-                                "title": "Cross Bronx Expy"
-                            },
-                            {
-                                "field": "starttime",
-                                "type": "temporal",
-                                "title": "Time"
-                            }
-                        ]
-                    }
-                },
-                                {
-                    "mark": {
-                        "type": "line",
-                        "point": false,
-                        "tooltip": true,
-                        "interpolate": "natural",
-                        "strokeWidth": 1.5
-                    },
-                    "encoding": {
-                        "x": {
-                            "field": "starttime",
-                            "type": "temporal",
-                            "title": " "
-                        },
-                        "y": {
-                            "field": "Queensboro Bridge",
-                            "type": "quantitative",
-                            "title": " "
-                        },
-                        "color": {
-                            "value": "pink"
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Queensboro Bridge",
-                                "title": "Queensboro Bridge"
-                            },
-                            {
-                                "field": "starttime",
-                                "type": "temporal",
-                                "title": "Time"
-                            }
-                        ]
-                    }
-                },
-                                {
-                    "mark": {
-                        "type": "line",
-                        "point": false,
-                        "tooltip": true,
-                        "interpolate": "natural",
-                        "strokeWidth": 1.5
-                    },
-                    "encoding": {
-                        "x": {
-                            "field": "starttime",
-                            "type": "temporal",
-                            "title": " "
-                        },
-                        "y": {
-                            "field": "Williamsburg Bridge",
-                            "type": "quantitative",
-                            "title": " "
-                        },
-                        "color": {
-                            "value": "blue"
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Williamsburg Bridge",
-                                "title": "Williamsburg Bridge"
-                            },
-                            {
-                                "field": "starttime",
-                                "type": "temporal",
-                                "title": "Time"
-                            }
-                        ]
-                    }
-                },
-                                {
-                    "mark": {
-                        "type": "line",
-                        "point": false,
-                        "tooltip": true,
-                        "interpolate": "natural",
-                        "strokeWidth": 1.5
-                    },
-                    "encoding": {
-                        "x": {
-                            "field": "starttime",
-                            "type": "temporal",
-                            "title": " "
-                        },
-                        "y": {
-                            "field": "Manhattan Bridge",
-                            "type": "quantitative",
-                            "title": " "
-                        },
-                        "color": {
-                            "value": "green"
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Manhattan Bridge",
-                                "title": "Manhattan Bridge"
-                            },
-                            {
-                                "field": "starttime",
-                                "type": "temporal",
-                                "title": "Time"
-                            }
-                        ]
-                    }
+                    "field": "starttime",
+                    "type": "temporal",
+                    "title": "Time"
                 }
-
             ]
+        }
+    },
+    {
+        "mark": {
+            "type": "line",
+            "point": false,
+            "tooltip": true,
+            "interpolate": "natural",
+            "strokeWidth": 1.5
+        },
+        "encoding": {
+            "x": {
+                "field": "starttime",
+                "type": "temporal",
+                "title": " "
+            },
+            "y": {
+                "field": "Cross Bronx Expy",
+                "type": "quantitative",
+                "title": " "
+            },
+            "color": {
+                "value": "purple"
+            },
+            "tooltip": [
+                {
+                    "field": "Cross Bronx Expy",
+                    "title": "Cross Bronx Expy"
+                },
+                {
+                    "field": "starttime",
+                    "type": "temporal",
+                    "title": "Time"
+                }
+            ]
+        }
+    },
+                    {
+        "mark": {
+            "type": "line",
+            "point": false,
+            "tooltip": true,
+            "interpolate": "natural",
+            "strokeWidth": 1.5
+        },
+        "encoding": {
+            "x": {
+                "field": "starttime",
+                "type": "temporal",
+                "title": " "
+            },
+            "y": {
+                "field": "Queensboro Bridge",
+                "type": "quantitative",
+                "title": " "
+            },
+            "color": {
+                "value": "pink"
+            },
+            "tooltip": [
+                {
+                    "field": "Queensboro Bridge",
+                    "title": "Queensboro Bridge"
+                },
+                {
+                    "field": "starttime",
+                    "type": "temporal",
+                    "title": "Time"
+                }
+            ]
+        }
+    },
+                    {
+        "mark": {
+            "type": "line",
+            "point": false,
+            "tooltip": true,
+            "interpolate": "natural",
+            "strokeWidth": 1.5
+        },
+        "encoding": {
+            "x": {
+                "field": "starttime",
+                "type": "temporal",
+                "title": " "
+            },
+            "y": {
+                "field": "Williamsburg Bridge",
+                "type": "quantitative",
+                "title": " "
+            },
+            "color": {
+                "value": "blue"
+            },
+            "tooltip": [
+                {
+                    "field": "Williamsburg Bridge",
+                    "title": "Williamsburg Bridge"
+                },
+                {
+                    "field": "starttime",
+                    "type": "temporal",
+                    "title": "Time"
+                }
+            ]
+        }
+    },
+                    {
+        "mark": {
+            "type": "line",
+            "point": false,
+            "tooltip": true,
+            "interpolate": "natural",
+            "strokeWidth": 1.5
+        },
+        "encoding": {
+            "x": {
+                "field": "starttime",
+                "type": "temporal",
+                "title": " "
+            },
+            "y": {
+                "field": "Manhattan Bridge",
+                "type": "quantitative",
+                "title": " "
+            },
+            "color": {
+                "value": "green"
+            },
+            "tooltip": [
+                {
+                    "field": "Manhattan Bridge",
+                    "title": "Manhattan Bridge"
+                },
+                {
+                    "field": "starttime",
+                    "type": "temporal",
+                    "title": "Time"
+                }
+            ]
+        }
+    }
+
+]
+};
+
+// establish the spec that we'll manipulate and chart.
+var spec = origSpec;
+
+// Embed the spec
+vegaEmbed("#vis2", spec)
+
+// Grab the buttons for manipulation later
+var buttons = document.querySelectorAll('.selectorbtn');
+
+function changeData(x) {
+    // remove active class from buttons
+    buttons.forEach(button => button.classList.remove('btn-light'))
+
+    // add active class for selected button
+    var btn = "btn"+x;
+    document.getElementById(btn).classList.add('btn-light')
+
+    // make all lines gray, thinner, and unmarked
+    for (let i = 0; i < 5; i++) {
+        spec.layer[i].encoding.color.value = "lightgray"
+        spec.layer[i].mark.strokeWidth = 1
+        spec.layer[i].mark.point = false
         };
 
-        vegaEmbed("#vis2", spec)
+    // create a color variable
+    var color;
+    if (x==0) {
+        color = "darkgray"
+    } else if (x==1) {
+        color = "purple"
+    } else if (x==2) {
+        color = "pink"
+    } else if (x==3) {
+        color = "blue"
+    } else if (x==4) {
+        color = "green"
+    } else {};
 
+    // style the selected series
+    spec.layer[x].encoding.color.value = color
+    spec.layer[x].mark.strokeWidth = 2.5
+    spec.layer[x].mark.point = true
+    vegaEmbed("#vis2", spec)
 
-    </script>
+    }
+
+// reload page to restore defaults
+function restore() {
+    location.reload();
+}
+
+</script>
 
 
 </body>
