@@ -229,18 +229,17 @@
             </div>
 
             <div class="row mt-2">
-                <div class="col-6 mr-auto">
+                <div class="col-md-7 mr-auto">
                     <p>NYC's air quality is generally good <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/breatheeasy/index.html">and has been improving over time</a>. For PM2.5 (fine particles in the air), NYC meets the national air quality standard of an annual average of 12 μg/m<sup>3</sup>. </p>
                     
                     <p>But hour to hour, there's large variation in our air quality - even in neighborhoods with the cleanest air. That means sometimes, New Yorkers are exposed to high levels of <a href="">pollutants like PM2.5 that can harm health.</a> </p>
                     <p>These high levels are driven by daily changes in traffic volume, weather patterns that can trap emissions, and other short-term events.</p>
-                   
                 </div>
             </div>
 
             <hr>
 
-            <div class="row mt-2">
+            <div class="row mt-2 px-2">
                 <div class="col h-100">
                     <div class="row">
                         <button onclick="restore()" type="button" id="btnrestore" class="selectorbtn btn btn-sm btn-light-outline btn-light">Show all</button>
@@ -256,146 +255,111 @@
                         
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col ml-auto">
+                            <form id="numberinput" class="float-right fs-sm ml-2">
+                                <label for="inputNum" style="display:inline-block;">Show the last</label>
+                                <input type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" max="5">
+                               days.    <button style="display:inline-block" onclick="updateChart(0)">Reset</button>
+                              </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr>
 
             <div class="row mt-6">
                 <div class="col-md-6">
-                    <strong>Air quality varies because sources vary</strong>
+                    <h3>Air quality varies because sources vary</h3>
                     <p>In New York City, about 45% of PM2.5 comes from far-away sources, like coal-burning power plants in the Midwest. But the rest comes from <b>local sources</b>. When we study air quality in every neighborhood of the city, we're able to identify the sources that are most closely associated with higher levels of air pollution.</p>
 
-                    <div class="card mb-2">
-                            <div class="card-body">
-                
-                <div class="nav nav-pills device-sm" role="tablist">
+                    <h4><i class="fas fa-building mr-1" aria-hidden="true"></i>Buildings</h4>
+                    <p>Building density affects a neighborhood's air quality because like vehicles, buildings burn fuel and emit pollutants: their boilers burn oil and gas to produce heat and hot water. This is one reason we often see more air pollution in the winter.</p>
+                    <p>Because of new heating oil regulations, PM2.5 has gone down dramatically, and SO2 levels are now indetectable. <a href="https://nyc-ehs.net/besp-report/web/nyccas">Read more at the NYCCAS annual report</a>. </p>
 
-                    <a class="nav-item nav-link flex-fill active" id="tab-btn-01-a" href="#tab-01-a"
-                        data-toggle="pill" aria-controls="tab-01-a" aria-selected="true" role="tab">
-                        <i class="fas fa-building"></i><div class="d-none d-lg-block">Buildings</div>
-                    </a>
-                
-                    <a class="nav-item nav-link flex-fill" id="tab-btn-01-b" href="#tab-01-b"
-                        data-toggle="pill" aria-controls="tab-01-b" aria-selected="false" role="tab">
-                        <i class="fas fa-industry"></i><div class="d-none d-lg-block">Industry</div>
-                    </a>
-                
-                    <a class="nav-item nav-link flex-fill" id="tab-btn-01-c" href="#tab-01-c"
-                        data-toggle="pill" aria-controls="tab-01-c" aria-selected="false" role="tab">
-                        <i class="fas fa-car"></i><div class="d-none d-lg-block">Traffic</div> 
-                    </a>
-
-                    <a class="nav-item nav-link flex-fill" id="tab-btn-01-d" href="#tab-01-d"
-                    data-toggle="pill" aria-controls="tab-01-d" aria-selected="false" role="tab">
-                    <i class="fas fa-truck"></i><div class="d-none d-lg-block">Trucks</div> 
-                    </a>
-                
-                </div>
-                
-                <div class="tab-content" id="tabs-01-content">
-                        
-                    <div class="tab-pane fade show active " id="tab-01-a" aria-labelledby="tab-btn-01-a" role="tabpanel">
-                        
-                            <div class="">
-                            <p>Building density affects a neighborhood's air quality because like vehicles, buildings burn fuel and emit pollutants: their boilers burn oil and gas to produce heat and hot water. This is one reason we often see more air pollution in the winter.</p>
-                            <p>Because of new heating oil regulations, PM2.5 has gone down dramatically, and SO2 levels are now indetectable. <a href="https://nyc-ehs.net/besp-report/web/nyccas">Read more at the NYCCAS annual report</a>. </p>
-                     </div>
-                        
-                     
-                     
-                    
-                    </div>
-                
-                    <div class="tab-pane fade" id="tab-01-b" aria-labelledby="tab-btn-01-b" role="tabpanel">
-                       
-                            <div class="">   
+                    <h4><i class="fas fa-industry mr-1" aria-hidden="true"></i>Industrial area</h4>
                     <p> Industrial areas affect a neighborhood's air quality because of diesel exhaust from trucks idling and traveling through industrial areas, and from industrial combustion equipment.</p>
-                     </div>
-                 
-                    </div>
-                
-                    <div class="tab-pane fade" id="tab-01-c" aria-labelledby="tab-btn-01-c" role="tabpanel">
-                            <div class="">
-                          <p> Traffic density affects a neighborhood's air quality because engines produce PM2.5, black carbon, and NOx. While electric vehicles help reduce emissions, all vehicles also contribute to PM2.5 through tire wear and braking. Traffic volume is one reason we often see daily spikes in PM2.5 concentration in the mornings and evenings.</p>
-               </div>
-                    </div>
 
-                    <div class="tab-pane fade" id="tab-01-d" aria-labelledby="tab-btn-01-d" role="tabpanel">
-                            <div class="">
-                         <p>Truck traffic density affects a neighborhood's air quality because diesel combustion produces additional pollutants.</p>
-              </div>
-                        </div>
+                    <h4> <i class="fas fa-car mr-1" aria-hidden="true"></i>Traffic</h4>
+                    <p> Traffic density affects a neighborhood's air quality because engines produce PM2.5, black carbon, and NOx. While electric vehicles help reduce emissions, all vehicles also contribute to PM2.5 through tire wear and braking. Traffic volume is one reason we often see daily spikes in PM2.5 concentration in the mornings and evenings.</p>
 
-
-
-                
-                </div> 
-
-            </div>
-                     </div>  
+                    <h4><i class="fas fa-truck mr-1" aria-hidden="true"></i>Trucks</h4>
+                    <p>Truck traffic density affects a neighborhood's air quality because diesel combustion produces additional pollutants.</p>
                 </div>
 
                 <div class="col-md-6">
-                    <strong>Common patterns in the data</strong>
+                    <h3>Common patterns in the data</h3>
                     <p>Commonly, we can see spatial differences in air quality (different air quality in different locations), as well as weather patterns, daily spikes, and other spikes that show up in the data. Take a look at the images and see if you can see similar patterns in today's data - or come back tomorrow to check.</p>
+
+
+
                     <div class="card mb-4">
                         <div class="card-body">
 
-                        
-                       
+                        <div class="row p-2">
+                            <div class="nav flex-fill nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link active" id="v-pills-spatial-tab" data-toggle="pill" href="#v-pills-spatial" role="tab" aria-controls="v-pills-spatial" aria-selected="true">Spatial differences</a>
+                                <a class="nav-link" id="v-pills-daily-tab" data-toggle="pill" href="#v-pills-daily" role="tab" aria-controls="v-pills-daily" aria-selected="false">Daily spikes</a>
 
+                                <a class="nav-link" id="v-pills-weather-tab" data-toggle="pill" href="#v-pills-weather" role="tab" aria-controls="v-pills-weather" aria-selected="false">Weather patterns</a>
+                                <a class="nav-link" id="v-pills-other-tab" data-toggle="pill" href="#v-pills-other" role="tab" aria-controls="v-pills-other" aria-selected="false">Other spikes</a>
+                              </div>
+                        </div>
 
-                        <div class="row mb-4">
-                                <div class="col-4 h-100">
-                                  <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                    <a class="nav-link active" id="v-pills-spatial-tab" data-toggle="pill" href="#v-pills-spatial" role="tab" aria-controls="v-pills-spatial" aria-selected="true">Spatial differences</a>
-                                    <a class="nav-link" id="v-pills-daily-tab" data-toggle="pill" href="#v-pills-daily" role="tab" aria-controls="v-pills-daily" aria-selected="false">Daily spikes</a>
-                                    <a class="nav-link" id="v-pills-other-tab" data-toggle="pill" href="#v-pills-other" role="tab" aria-controls="v-pills-other" aria-selected="false">Other spikes</a>
-                                    <a class="nav-link" id="v-pills-weather-tab" data-toggle="pill" href="#v-pills-weather" role="tab" aria-controls="v-pills-weather" aria-selected="false">Weather patterns</a>
-                                  </div>
+                        <div class="row p-2">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <div class="tab-pane fade show active" id="v-pills-spatial" role="tabpanel" aria-labelledby="v-pills-spatial-tab">
+                                        
+                                                <figure class="figure">
+                                                        <figcaption class="figure-caption fs-sm"><span style="color: #A513B6; font-weight: bold;">Spatial differences</span>
+                                                            <br>The monitors are in neighborhoods with different emissions sources, so have different PM2.5 levels. <span style="color:purple"><b>Midtown</b></span> has the highest traffic density, usually has the most PM2.5. <span style="color:red"><b>Queens College</b></span>, with the least traffic, often has the cleanest air.</figcaption>
+                                                    <img src="images/AQweather.png" class="figure-img img-fluid rounded" alt="ALT TEXT HERE">
+                                                    
+                                                </figure>
                                 </div>
-                                <div class="col-8">
-                                  <div class="tab-content" id="v-pills-tabContent">
-                                    <div class="tab-pane fade show active" id="v-pills-spatial" role="tabpanel" aria-labelledby="v-pills-spatial-tab">
-                                            
-                                                    <figure class="figure">
-                                                            <figcaption class="figure-caption fs-sm"><span style="color: #A513B6; font-weight: bold;">Spatial differences</span>
-                                                                <br>The monitors are in neighborhoods with different emissions sources, so have different PM2.5 levels. <span style="color:purple"><b>Midtown</b></span> has the highest traffic density, usually has the most PM2.5. <span style="color:red"><b>Queens College</b></span>, with the least traffic, often has the cleanest air.</figcaption>
-                                                        <img src="images/AQweather.png" class="figure-img img-fluid rounded" alt="ALT TEXT HERE">
-                                                        
-                                                    </figure>
-                                    </div>
-                                    <div class="tab-pane fade" id="v-pills-daily" role="tabpanel" aria-labelledby="v-pills-daily-tab">
-                                            
-                                                    <figure class="figure">
-                                                            <figcaption class="figure-caption fs-sm"><span style="color: #A513B6; font-weight: bold;">Daily spikes</span> <br>PM2.5 levels rise in the morning as traffic volume increases. These <em>temporal</em> differences (spikes) are usually greater than <em>spatial</em> differences (the differences between neighborhoods).</figcaption>
-                                                        <img src="images/aqimage.PNG" class="figure-img img-fluid rounded" alt="ALT TEXT HERE">
-                                                        
-                                                    </figure>
-                                    </div>
-                                    <div class="tab-pane fade" id="v-pills-other" role="tabpanel" aria-labelledby="v-pills-other-tab">
-                                           
-                                                    <figure class="figure">
-                                                            <figcaption class="figure-caption fs-sm"><span style="color: #A513B6; font-weight: bold;">Other spikes</span> <br>Sometimes there are <span style="color:#008000;"><b>dramatic spikes</b></span> at unexpected times, and without having a camera on each monitor, we don't know what causes them - however, they can be explained by something as simple as a truck idling for a few minutes underneath the monitor.</figcaption>
-                                                        <img src="images/AQspike.PNG" class="figure-img img-fluid rounded" alt="ALT TEXT HERE" >
-                                                        
-                                                    </figure>
-                                    </div>
-                                    <div class="tab-pane fade" id="v-pills-weather" role="tabpanel" aria-labelledby="v-pills-weather-tab">
-                                            
-                                                    <figure class="figure">
-                                                            <figcaption class="figure-caption fs-sm"><span style="color: #A513B6; font-weight: bold;">Weather patterns</span> <br>Weather can trap emissions and cause PM2.5 to build up. Sometimes we see a clear west-to-east pattern in rising PM2.5, likely related to a weather pattern moving in to New York City and causing pollution levels to rise as emissions are trapped.</figcaption>
-                                                        <img src="images/aqweather2.PNG" class="figure-img img-fluid rounded" alt="ALT TEXT HERE">
-                                                        
-                                                    </figure>
-                                    </div>
-                                  </div>
+                                <div class="tab-pane fade" id="v-pills-daily" role="tabpanel" aria-labelledby="v-pills-daily-tab">
+                                        
+                                                <figure class="figure">
+                                                        <figcaption class="figure-caption fs-sm"><span style="color: #A513B6; font-weight: bold;">Daily spikes</span> <br>PM2.5 levels usually rise in the morning as traffic volume increases. These <em>temporal</em> differences (time spikes) are usually greater than <em>spatial</em> differences (the differences between neighborhoods).</figcaption>
+                                                    <img src="images/aqimage.PNG" class="figure-img img-fluid rounded" alt="ALT TEXT HERE">
+                                                    
+                                                </figure>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-other" role="tabpanel" aria-labelledby="v-pills-other-tab">
+                                       
+                                                <figure class="figure">
+                                                        <figcaption class="figure-caption fs-sm"><span style="color: #A513B6; font-weight: bold;">Other spikes</span> <br>Sometimes there are <span style="color:#008000;"><b>dramatic spikes</b></span> at unexpected times, and without having a camera on each monitor, we don't know what causes them - however, they can be explained by something as simple as a truck idling for a few minutes underneath the monitor.</figcaption>
+                                                    <img src="images/AQspike.PNG" class="figure-img img-fluid rounded" alt="ALT TEXT HERE" >
+                                                    
+                                                </figure>
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-weather" role="tabpanel" aria-labelledby="v-pills-weather-tab">
+                                        
+                                                <figure class="figure">
+                                                        <figcaption class="figure-caption fs-sm"><span style="color: #A513B6; font-weight: bold;">Weather patterns</span> <br>Weather can trap emissions and cause PM2.5 to build up. Sometimes we see a clear west-to-east pattern in rising PM2.5, likely related to a weather pattern moving in to New York City and causing pollution levels to rise as emissions are trapped.</figcaption>
+                                                    <img src="images/aqweather2.PNG" class="figure-img img-fluid rounded" alt="ALT TEXT HERE">
+                                                    
+                                                </figure>
                                 </div>
                               </div>
+                        </div>
+
+                
                             </div>
                         </div>
 
                 </div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col-md-6 mx-auto">
+                <div style="background-color:#dcdcdc; padding: 10px; border-radius: 5px;" class="mt-6">
+                    <h4>About the Data</h4>
+                   <p><a href="https://github.com/nychealth/realtime-air-quality">Visit our Github repository to download these data</a>. </p>
+                   <p>Data come from the NYCCAS near-real-time monitor network.</p>
+               </div>
+               </div>
             </div>
 
 
