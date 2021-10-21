@@ -634,6 +634,7 @@ document.getElementById('inputNum').addEventListener('change',function() {
     updateChart(inputNum);
 });
 
+// this function updates the chart based on timeselection
 function updateChart(x) {
     var inputHours // hours in a day
     inputHours = x * 24;
@@ -649,7 +650,6 @@ function updateChart(x) {
   );
 
 }
-
 
 
 // establish the original spec. 
@@ -866,6 +866,7 @@ var spec = origSpec;
 // Grab the buttons for manipulation later
 var buttons = document.querySelectorAll('.selectorbtn');
 
+// this function updates the chart based on the location selection
 function changeData(x) {
     // remove active class from buttons
     buttons.forEach(button => button.classList.remove('btn-light'))
