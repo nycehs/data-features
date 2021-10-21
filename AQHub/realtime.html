@@ -239,15 +239,33 @@
 
             <hr>
 
-            <div class="row mt-2 px-2">
-                <div class="col h-100">
+            <div class="row mt-2 px-0">
+                <div class="col">
                     <div class="row">
-                        <button onclick="restore()" type="button" id="btnrestore" class="selectorbtn btn btn-sm btn-light-outline btn-light">Show all</button>
-                        <button onclick="changeData(0)" type="button" id="btn0" class="selectorbtn btn btn-sm btn-light-outline">Broadway/35th</button>
-                        <button onclick="changeData(1)" type="button" id="btn1"  class="selectorbtn btn btn-sm btn-light-outline">Cross Bronx Expwy</button>
-                        <button onclick="changeData(2)" type="button" id="btn2" class="selectorbtn btn btn-sm btn-light-outline">Queensboro Bridge</button>
-                        <button onclick="changeData(3)" type="button" id="btn3" class="selectorbtn btn btn-sm btn-light-outline">Williamsburg Bridge</button>
-                        <button onclick="changeData(4)" type="button" id="btn4" class="selectorbtn btn btn-sm btn-light-outline">Manhattan Bridge</button>
+                        <div class="col">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <button onclick="restore()" type="button" id="btnrestore" class="selectorbtn btn btn-sm btn-light-outline btn-light">Show all</button>
+                            <button onclick="changeData(0)" type="button" id="btn0" class="selectorbtn btn btn-sm btn-light-outline">Broadway/35th</button>
+                            <button onclick="changeData(1)" type="button" id="btn1"  class="selectorbtn btn btn-sm btn-light-outline">Cross Bronx Expwy</button>
+                            <button onclick="changeData(2)" type="button" id="btn2" class="selectorbtn btn btn-sm btn-light-outline">Queensboro Bridge</button>
+                            <button onclick="changeData(3)" type="button" id="btn3" class="selectorbtn btn btn-sm btn-light-outline">Williamsburg Bridge</button>
+                            <button onclick="changeData(4)" type="button" id="btn4" class="selectorbtn btn btn-sm btn-light-outline">Manhattan Bridge</button>
+    
+                        </div>
+
+                        <div class="col-md-3">
+                            <form id="numberinput" class="float-right fs-sm ml-2">
+                                <label for="inputNum" style="display:inline-block;">Show the last</label>
+                                <input type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" max="7">
+                               days.   
+                              </form> 
+                        </div>
+
+
+
                     </div>
 
                     <div class="row">
@@ -256,181 +274,10 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-12 ml-auto">
-                            <div class="min-max-slider" data-legendnum="2">
-                                <label for="min">Range start</label>
-                                <input id="min" class="min" name="min" type="range" step="1" min="0" max="3000" />
-                                <label for="max">Range end</label>
-                                <input id="max" class="max" name="max" type="range" step="1" min="0" max="3000" />
-                            </div>
-
-
-                            <!-- <form id="numberinput" class="float-right fs-sm ml-2">
-                                <label for="inputNum" style="display:inline-block;">Show the last</label>
-                                <input type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" max="5">
-                               days.    <button style="display:inline-block" onclick="updateChart(0)">Reset</button>
-                              </form> -->
-                        </div>
                     </div>
-                </div>
             </div>
 
-            <style>
-                /* styles for dual-input slider*/
-                * {padding: 0; margin: 0;}
-                body {padding: 40px;}
-                a {font-size: small; margin-top: 10px; position: relative; display: inline-block;}
 
-                .min-max-slider {position: relative; width: 100%; text-align: center; margin-bottom: 50px;}
-                .min-max-slider > label {display: none;}
-                span.value {height: 1.7em; font-weight: bold; display: inline-block;}
-                span.value.lower::before {content: "€"; display: inline-block;}
-                span.value.upper::before {content: "- €"; display: inline-block; margin-left: 0.4em;}
-                .min-max-slider > .legend {display: flex; justify-content: space-between;}
-                .min-max-slider > .legend > * {font-size: small; opacity: 0.25;}
-                .min-max-slider > input {cursor: pointer; position: absolute;}
-
-                /* webkit specific styling */
-                .min-max-slider > input {
-                -webkit-appearance: none;
-                outline: none!important;
-                background: transparent;
-                background-image: linear-gradient(to bottom, transparent 0%, transparent 30%, silver 30%, silver 60%, transparent 60%, transparent 100%);
-                }
-                .min-max-slider > input::-webkit-slider-thumb {
-                -webkit-appearance: none; /* Override default look */
-                appearance: none;
-                width: 14px; /* Set a specific slider handle width */
-                height: 14px; /* Slider handle height */
-                background: #eee; /* Green background */
-                cursor: pointer; /* Cursor on hover */
-                border: 1px solid gray;
-                border-radius: 100%;
-                }
-                .min-max-slider > input::-webkit-slider-runnable-track {cursor: pointer;}
-            </style>
-
-            
-            <script>
-                /* 
-                HTML, CSS, and JS for dual-handle slider gratefully adapted from: https://codepen.io/joosts/pen/rNLdxvK
-                */
-
-                var thumbsize = 14;
-
-                function draw(slider,splitvalue) {
-
-                /* set function vars */
-                var min = slider.querySelector('.min');
-                var max = slider.querySelector('.max');
-                var lower = slider.querySelector('.lower');
-                var upper = slider.querySelector('.upper');
-                var legend = slider.querySelector('.legend');
-                var thumbsize = parseInt(slider.getAttribute('data-thumbsize'));
-                var rangewidth = parseInt(slider.getAttribute('data-rangewidth'));
-                var rangemin = parseInt(slider.getAttribute('data-rangemin'));
-                var rangemax = parseInt(slider.getAttribute('data-rangemax'));
-
-                /* set min and max attributes */
-                min.setAttribute('max',splitvalue);
-                max.setAttribute('min',splitvalue);
-
-                /* set css */
-                min.style.width = parseInt(thumbsize + ((splitvalue - rangemin)/(rangemax - rangemin))*(rangewidth - (2*thumbsize)))+'px';
-                max.style.width = parseInt(thumbsize + ((rangemax - splitvalue)/(rangemax - rangemin))*(rangewidth - (2*thumbsize)))+'px';
-                min.style.left = '0px';
-                max.style.left = parseInt(min.style.width)+'px';
-                min.style.top = lower.offsetHeight+'px';
-                max.style.top = lower.offsetHeight+'px';
-                legend.style.marginTop = min.offsetHeight+'px';
-                slider.style.height = (lower.offsetHeight + min.offsetHeight + legend.offsetHeight)+'px';
-
-                /* correct for 1 off at the end */
-                if(max.value>(rangemax - 1)) max.setAttribute('data-value',rangemax);
-
-                /* write value and labels */
-                max.value = max.getAttribute('data-value'); 
-                min.value = min.getAttribute('data-value');
-                lower.innerHTML = min.getAttribute('data-value');
-                upper.innerHTML = max.getAttribute('data-value');
-
-                }
-
-                function init(slider) {
-                /* set function vars */
-                var min = slider.querySelector('.min');
-                var max = slider.querySelector('.max');
-                var rangemin = parseInt(min.getAttribute('min'));
-                var rangemax = parseInt(max.getAttribute('max'));
-                var avgvalue = (rangemin + rangemax)/2;
-                var legendnum = slider.getAttribute('data-legendnum');
-
-                /* set data-values */
-                min.setAttribute('data-value',rangemin);
-                max.setAttribute('data-value',rangemax);
-
-                /* set data vars */
-                slider.setAttribute('data-rangemin',rangemin); 
-                slider.setAttribute('data-rangemax',rangemax); 
-                slider.setAttribute('data-thumbsize',thumbsize); 
-                slider.setAttribute('data-rangewidth',slider.offsetWidth);
-
-                /* write labels */
-                var lower = document.createElement('span');
-                var upper = document.createElement('span');
-                lower.classList.add('lower','value');
-                upper.classList.add('upper','value');
-                lower.appendChild(document.createTextNode(rangemin));
-                upper.appendChild(document.createTextNode(rangemax));
-                slider.insertBefore(lower,min.previousElementSibling);
-                slider.insertBefore(upper,min.previousElementSibling);
-
-                /* write legend */
-                var legend = document.createElement('div');
-                legend.classList.add('legend');
-                legend.classList.add('sr-only');
-                var legendvalues = [];
-                for (var i = 0; i < legendnum; i++) {
-                legendvalues[i] = document.createElement('div');
-                var val = Math.round(rangemin+(i/(legendnum-1))*(rangemax - rangemin));
-                legendvalues[i].appendChild(document.createTextNode(val));
-                legend.appendChild(legendvalues[i]);
-
-                } 
-                slider.appendChild(legend);
-
-                /* draw */
-                draw(slider,avgvalue);
-
-                /* events */
-                min.addEventListener("input", function() {update(min);});
-                max.addEventListener("input", function() {update(max);});
-                }
-
-                function update(el){
-                /* set function vars */
-                var slider = el.parentElement;
-                var min = slider.querySelector('#min');
-                var max = slider.querySelector('#max');
-                var minvalue = Math.floor(min.value);
-                var maxvalue = Math.floor(max.value);
-
-                /* set inactive values before draw */
-                min.setAttribute('data-value',minvalue);
-                max.setAttribute('data-value',maxvalue);
-
-                var avgvalue = (minvalue + maxvalue)/2;
-
-                /* draw */
-                draw(slider,avgvalue);
-                }
-
-                var sliders = document.querySelectorAll('.min-max-slider');
-                sliders.forEach( function(slider) {
-                init(slider);
-                });
-            </script>
             <hr>
 
             <div class="row mt-6">
@@ -752,10 +599,57 @@
 
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
+<!--Arquero-->
+<script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
 
 <!--Chart spec-->
 <script>
+
+var dt;
+var fullTable;
+var shortTable;
+
+// Loads the csv as an arquero table
+aq.loadCSV(
+"https://raw.githubusercontent.com/nychealth/realtime-air-quality/main/RT_flat.csv"
+).then(data => {
+dt = data;
+
+fullTable = dt.objects(); // puts the data into fullTable to use. 
+shortTable = fullTable; // creating an array we'll slice for time-selection
+
+// inserts fullTable into the spec and draws the chart
+vegaEmbed("#vis2", spec).then((res) =>
+res.view.insert("lineData", fullTable).run()
+);
+
+});
+
+var inputNum; // the number of days we want to select
+
+// event listener on the time-selection form
+document.getElementById('inputNum').addEventListener('change',function() {
+    event.preventDefault();
+    inputNum = document.getElementById('inputNum').value;
+    updateChart(inputNum);
+});
+
+function updateChart(x) {
+    var inputHours // hours in a day
+    inputHours = x * 24;
+    var startingPoint; 
+    startingPoint = fullTable.length - inputHours;
+    console.log('show chart for ' + inputHours + " hours");
+
+    shortTable = fullTable.slice(startingPoint, fullTable.length)
+    console.log(shortTable);
+
+    vegaEmbed("#vis2", spec).then((res) =>
+    res.view.insert("lineData", shortTable).run()
+  );
+
+}
+
 
 
 // establish the original spec. 
@@ -784,7 +678,7 @@ const origSpec = {
     }
 },
 "data": {
-    "url": "https://gist.githubusercontent.com/mmontesanonyc/19245e58b9ba8dca738edbd3ef0af43f/raw/48cb92f783b07a3299a94ec16dffa223ddbc19f3/RT_flat.csv"
+    "name": "lineData"
     },
 "layer": [
     {
@@ -969,9 +863,6 @@ const origSpec = {
 // establish the spec that we'll manipulate and chart.
 var spec = origSpec;
 
-// Embed the spec
-vegaEmbed("#vis2", spec)
-
 // Grab the buttons for manipulation later
 var buttons = document.querySelectorAll('.selectorbtn');
 
@@ -1008,7 +899,11 @@ function changeData(x) {
     spec.layer[x].encoding.color.value = color
     spec.layer[x].mark.strokeWidth = 2.5
     spec.layer[x].mark.point = true
-    vegaEmbed("#vis2", spec)
+
+    // redraw the chart
+    vegaEmbed("#vis2", spec).then((res) =>
+    res.view.insert("lineData", shortTable).run()
+    );
 
     }
 
