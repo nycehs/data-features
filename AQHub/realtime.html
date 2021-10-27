@@ -229,11 +229,16 @@
             </div>
 
             <div class="row mt-2">
-                <div class="col-md-7 mr-auto">
+                <div class="col-md-7">
                     <p>NYC's air quality is generally good <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/breatheeasy/index.html">and has been improving over time</a>. For PM2.5 (fine particles in the air), NYC meets the national air quality standard of an annual average of 12 μg/m<sup>3</sup>. </p>
                     
                     <p>But hour to hour, there's large variation in our air quality - even in neighborhoods with the cleanest air. That means sometimes, New Yorkers are exposed to high levels of <a href="">pollutants like PM2.5 that can harm health.</a> </p>
                     <p>These high levels are driven by daily changes in traffic volume, weather patterns that can trap emissions, and other short-term events.</p>
+                </div>
+
+                <div class="col-md-4 ml-auto">
+                    <iframe title="Real time AQ monitors" aria-label="map" id="datawrapper-chart-O4tHk" src="https://datawrapper.dwcdn.net/O4tHk/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+                    </script>
                 </div>
             </div>
 
@@ -289,18 +294,25 @@
                     <h3>Air quality varies because sources vary</h3>
                     <p>In New York City, about 45% of PM2.5 comes from far-away sources, like coal-burning power plants in the Midwest. But the rest comes from <b>local sources</b>. When we study air quality in every neighborhood of the city, we're able to identify the sources that are most closely associated with higher levels of air pollution.</p>
 
-                    <h4><i class="fas fa-building mr-1" aria-hidden="true"></i>Buildings</h4>
-                    <p>Building density affects a neighborhood's air quality because like vehicles, buildings burn fuel and emit pollutants: their boilers burn oil and gas to produce heat and hot water. This is one reason we often see more air pollution in the winter.</p>
-                    <p>Because of new heating oil regulations, PM2.5 has gone down dramatically, and SO2 levels are now indetectable. <a href="https://nyc-ehs.net/besp-report/web/nyccas">Read more at the NYCCAS annual report</a>. </p>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="fs-lg"><i class="fas fa-building mr-1" aria-hidden="true"></i>Buildings</h4>
+                            <p>Building density affects a neighborhood's air quality because like vehicles, buildings burn fuel and emit pollutants: their boilers burn oil and gas to produce heat and hot water. This is one reason we often see more air pollution in the winter.</p>
+                            <p>Because of new heating oil regulations, PM2.5 has gone down dramatically, and SO2 levels are now indetectable. <a href="https://nyc-ehs.net/besp-report/web/nyccas">Read more at the NYCCAS annual report</a>. </p>
+        
+                            <h4 class="fs-lg"><i class="fas fa-industry mr-1" aria-hidden="true"></i>Industrial area</h4>
+                            <p> Industrial areas affect a neighborhood's air quality because of diesel exhaust from trucks idling and traveling through industrial areas, and from industrial combustion equipment.</p>
+        
+                            <h4 class="fs-lg"> <i class="fas fa-car mr-1" aria-hidden="true"></i>Traffic</h4>
+                            <p> Traffic density affects a neighborhood's air quality because engines produce PM2.5, black carbon, and NOx. While electric vehicles help reduce emissions, all vehicles also contribute to PM2.5 through tire wear and braking. Traffic volume is one reason we often see daily spikes in PM2.5 concentration in the mornings and evenings.</p>
+        
+                            <h4 class="fs-lg"><i class="fas fa-truck mr-1" aria-hidden="true"></i>Trucks</h4>
+                            <p>Truck traffic density affects a neighborhood's air quality because diesel combustion produces additional pollutants.</p>
+                        </div>
+                    </div>
 
-                    <h4><i class="fas fa-industry mr-1" aria-hidden="true"></i>Industrial area</h4>
-                    <p> Industrial areas affect a neighborhood's air quality because of diesel exhaust from trucks idling and traveling through industrial areas, and from industrial combustion equipment.</p>
 
-                    <h4> <i class="fas fa-car mr-1" aria-hidden="true"></i>Traffic</h4>
-                    <p> Traffic density affects a neighborhood's air quality because engines produce PM2.5, black carbon, and NOx. While electric vehicles help reduce emissions, all vehicles also contribute to PM2.5 through tire wear and braking. Traffic volume is one reason we often see daily spikes in PM2.5 concentration in the mornings and evenings.</p>
 
-                    <h4><i class="fas fa-truck mr-1" aria-hidden="true"></i>Trucks</h4>
-                    <p>Truck traffic density affects a neighborhood's air quality because diesel combustion produces additional pollutants.</p>
                 </div>
 
                 <div class="col-md-6">
@@ -312,7 +324,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
 
-                        <div class="row p-2">
+                        <div class="row px-2">
                             <div class="nav flex-fill nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                 <a class="nav-link active" id="v-pills-spatial-tab" data-toggle="pill" href="#v-pills-spatial" role="tab" aria-controls="v-pills-spatial" aria-selected="true">Spatial differences</a>
                                 <a class="nav-link" id="v-pills-daily-tab" data-toggle="pill" href="#v-pills-daily" role="tab" aria-controls="v-pills-daily" aria-selected="false">Daily spikes</a>
@@ -328,8 +340,8 @@
                                         
                                                 <figure class="figure">
                                                         <figcaption class="figure-caption fs-sm"><span style="color: #A513B6; font-weight: bold;">Spatial differences</span>
-                                                            <br>The monitors are in neighborhoods with different emissions sources, so have different PM2.5 levels. <span style="color:purple"><b>Midtown</b></span> has the highest traffic density, usually has the most PM2.5. <span style="color:red"><b>Queens College</b></span>, with the least traffic, often has the cleanest air.</figcaption>
-                                                    <img src="images/AQweather.png" class="figure-img img-fluid rounded" alt="ALT TEXT HERE">
+                                                            <br>The monitors are in neighborhoods with different emissions sources, so have different PM2.5 levels. <span style="color:gray"><b>Midtown</b></span> has the highest traffic density, usually has the most PM2.5. </figcaption>
+                                                    <img src="images/spatial.png" class="figure-img img-fluid rounded" alt="ALT TEXT HERE">
                                                     
                                                 </figure>
                                 </div>
@@ -337,15 +349,15 @@
                                         
                                                 <figure class="figure">
                                                         <figcaption class="figure-caption fs-sm"><span style="color: #A513B6; font-weight: bold;">Daily spikes</span> <br>PM2.5 levels usually rise in the morning as traffic volume increases. These <em>temporal</em> differences (time spikes) are usually greater than <em>spatial</em> differences (the differences between neighborhoods).</figcaption>
-                                                    <img src="images/aqimage.png" class="figure-img img-fluid rounded" alt="ALT TEXT HERE">
+                                                    <img src="images/daily.png" class="figure-img img-fluid rounded" alt="Daily changes in PM2.5 measurements from air quality monitors">
                                                     
                                                 </figure>
                                 </div>
                                 <div class="tab-pane fade" id="v-pills-other" role="tabpanel" aria-labelledby="v-pills-other-tab">
                                        
                                                 <figure class="figure">
-                                                        <figcaption class="figure-caption fs-sm"><span style="color: #A513B6; font-weight: bold;">Other spikes</span> <br>Sometimes there are <span style="color:#008000;"><b>dramatic spikes</b></span> at unexpected times, and without having a camera on each monitor, we don't know what causes them - however, they can be explained by something as simple as a truck idling for a few minutes underneath the monitor.</figcaption>
-                                                    <img src="images/AQspike.png" class="figure-img img-fluid rounded" alt="ALT TEXT HERE" >
+                                                        <figcaption class="figure-caption fs-sm"><span style="color: #A513B6; font-weight: bold;">Other spikes</span> <br>Sometimes there are <span style="color:gray;"><b>dramatic spikes</b></span> at unexpected times, and without having a camera on each monitor, we don't know what causes them - however, they can be explained by something as simple as a truck idling for a few minutes underneath the monitor.</figcaption>
+                                                        <img src="images/spike.png" class="figure-img img-fluid rounded" alt="A spike in PM2.5 measurements from one air quality monitor">
                                                     
                                                 </figure>
                                 </div>
