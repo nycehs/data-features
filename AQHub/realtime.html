@@ -240,7 +240,7 @@
                    </div>
                 </div>
 
-                <div class="col-md-4 ml-auto">
+                <div class="col-md-5 ml-auto">
                     <iframe title="Real time AQ monitors" aria-label="map" id="datawrapper-chart-O4tHk" src="https://datawrapper.dwcdn.net/O4tHk/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
                     </script>
                 </div>
@@ -259,18 +259,18 @@
 
                     <div class="row py-1">
                         <div class="col-md-9">
-                            <button onclick="changeData(0)" type="button" id="btn0" class="selectorbtn btn btn-sm btn-outline-primary">Broadway/35th</button>
-                            <button onclick="changeData(1)" type="button" id="btn1"  class="selectorbtn btn btn-sm btn-outline-primary">Cross Bronx Expwy</button>
-                            <button onclick="changeData(2)" type="button" id="btn2" class="selectorbtn btn btn-sm btn-outline-primary">Queensboro Br</button>
-                            <button onclick="changeData(3)" type="button" id="btn3" class="selectorbtn btn btn-sm btn-outline-primary">Williamsburg Br</button>
-                            <button onclick="changeData(4)" type="button" id="btn4" class="selectorbtn btn btn-sm btn-outline-primary">Manhattan Br</button>
-                            <button onclick="changeData(5)" type="button" id="btn5" class="selectorbtn btn btn-sm btn-outline-primary">Queens College</button>
+                            <button onclick="changeData(0)" type="button" id="btn0" class="mb-1 selectorbtn btn btn-sm btn-outline-primary">Broadway/35th</button>
+                            <button onclick="changeData(1)" type="button" id="btn1"  class="mb-1 selectorbtn btn btn-sm btn-outline-primary">Cross Bronx Expwy</button>
+                            <button onclick="changeData(2)" type="button" id="btn2" class="mb-1 selectorbtn btn btn-sm btn-outline-primary">Queensboro Br</button>
+                            <button onclick="changeData(3)" type="button" id="btn3" class="mb-1 selectorbtn btn btn-sm btn-outline-primary">Williamsburg Br</button>
+                            <button onclick="changeData(4)" type="button" id="btn4" class="mb-1 selectorbtn btn btn-sm btn-outline-primary">Manhattan Br</button>
+                            <button onclick="changeData(5)" type="button" id="btn5" class="mb-1 selectorbtn btn btn-sm btn-outline-primary">Queens College</button>
 
     
                         </div>
 
                         <div class="col-md-3">
-                            <button onclick="restore()" type="button" id="btnrestore" class="selectorbtn btn btn-sm btn-outline-primary float-right">Show all locations</button> 
+                            <button onclick="restore()" type="button" id="btnrestore" class="mb-1 selectorbtn btn btn-sm btn-outline-primary float-right">Show all locations</button> 
                         </div>
 
 
@@ -287,6 +287,11 @@
                     </div>
 
                     <div class="row">
+                        <div class="col-md-9 mr-auto">
+                            <p><em class="pl-2">Last measurement: <span id="printTime"></span></em></p>
+                            <p class="pl-2">Most recent 24-hour average for <span id="loc">LOCATION</span>: <span id="24av">XX</span> µg/m3. This is <span class="comparison">ABOVE/BELOW</span> the 24-hour  National Ambient Air Quality Standard.</p>
+                        </div>
+
                         <div class="col-md-3 ml-auto">
                             <form id="numberinput" class="float-right px-1 py-2" style="font-size: 12px; background-color: #eeeeee; border-radius: 3px; clear: all;">
                                 <label for="inputNum" style="display:inline-block; font-size: 12px;">Show last</label>
@@ -611,6 +616,7 @@ PM2.5 levels usually rise in the morning as traffic volume increases. These <em>
 var dt;
 var fullTable;
 var shortTable;
+var locSelect = "No location"
 
 // Loads the csv as an arquero table
 aq.loadCSV(
@@ -636,6 +642,8 @@ document.getElementById('inputNum').addEventListener('change',function() {
     inputNum = document.getElementById('inputNum').value;
     updateChart(inputNum);
 });
+
+
 
 // this function updates the chart based on timeselection
 function updateChart(x) {
@@ -957,18 +965,26 @@ function changeData(x) {
     // create a color variable
     var color;
     if (x==0) {
-        color = "darkgray"
+        color = "darkgray";
+        locSelect = "Broadway/35th St"
     } else if (x==1) {
-        color = "purple"
+        color = "purple";
+        locSelect = "Cross Bronx Expy"
     } else if (x==2) {
-        color = "pink"
+        color = "pink";
+        locSelect = "Queensboro Bridge"
     } else if (x==3) {
-        color = "blue"
+        color = "blue";
+        locSelect = "Williamsburg Bridge";
     } else if (x==4) {
-        color = "green"
+        color = "green";
+        locSelect = "Manhattan Bridge";
     } else if (x==5) {
-        color = "orange"
+        color = "orange";
+        locSelect = "Queens College";
     } else {};
+
+    console.log(locSelect)
 
     // style the selected series
     spec.layer[x].encoding.color.value = color
@@ -980,9 +996,33 @@ function changeData(x) {
     res.view.insert("lineData", shortTable).run()
     );
 
+    // run getAverage
+    getAverage(x);
+
     }
 
-// reload page to restore defaults
+// Here, we'll calculate the most recent 24-hour average for a selected neighborhood.
+function getAverage(x) {
+    var avTable; // creating an abridged data table
+    var selectedLoc;
+    var startAt = fullTable.length - 24; // get a starting point of most recent 24 hours
+    avTable = fullTable.slice(startAt, fullTable.length) // slicing the table to most recent 24 hours
+    console.log(avTable)
+
+    document.getElementById('printTime').innerHTML = avTable[23].starttime
+
+    // Filter by selected neighborhood
+    // Count number of entries. Stop if there are <18 entries.
+    // Else, average the entries
+    // Print this value to 24av
+    // If this is above 35, print HIGHER; else, print LOWER to comparison
+}
+
+//runs getAverage on slight delay so fullTable loads
+// setTimeout( function() { getAverage(); }, 3000);
+
+
+// reload page to restore defaults. There may be a better way to do this!
 function restore() {
     location.reload();
 }
