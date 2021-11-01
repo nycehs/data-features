@@ -1009,8 +1009,6 @@ var arqTable;
 
 // Here, we'll calculate the most recent 24-hour average for a selected neighborhood.
 function getAverage() {
-
-
     var startAt = fullTable.length - 24; // get a starting point of most recent 24 hours
     avTable = fullTable.slice(startAt, fullTable.length) // slicing the table to most recent 24 hours
     console.log(avTable)
@@ -1024,6 +1022,8 @@ function getAverage() {
     // Else, average the entries
     // Print this value to 24av
     // If this is above 35, print HIGHER; else, print LOWER to comparison
+
+    // Note - this may be easier with long version; location-selection buttons can apply a filter to the long file, which we can then pipe into the chart. 
 }
 
 //runs getAverage on slight delay so fullTable loads
