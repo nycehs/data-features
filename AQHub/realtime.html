@@ -1001,15 +1001,23 @@ function changeData(x) {
 
     }
 
+var avTable; // creating an abridged data table
+var selectedLoc;
+
+var arqTable;
+
+
 // Here, we'll calculate the most recent 24-hour average for a selected neighborhood.
-function getAverage(x) {
-    var avTable; // creating an abridged data table
-    var selectedLoc;
+function getAverage() {
+
+
     var startAt = fullTable.length - 24; // get a starting point of most recent 24 hours
     avTable = fullTable.slice(startAt, fullTable.length) // slicing the table to most recent 24 hours
     console.log(avTable)
 
     document.getElementById('printTime').innerHTML = avTable[23].starttime
+
+    arqTable = aq.from(avTable);
 
     // Filter by selected neighborhood
     // Count number of entries. Stop if there are <18 entries.
@@ -1026,6 +1034,7 @@ function getAverage(x) {
 function restore() {
     location.reload();
 }
+
 
 </script>
 
