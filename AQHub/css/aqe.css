@@ -43,3 +43,21 @@
   height: 100%; 
   width: 25px;
 }
+
+/* modifying badge colors for air quality details */
+
+.badge-custom-light {
+  padding:.3em .3em .3em .3em;
+  font-size:85%;
+  font-weight: 650;
+  color:#000;
+  background-color:#b2d7ff;
+}
+
+.badge-custom-dark {
+  padding:.3em .3em .3em .3em;
+  font-size:85%;
+  font-weight: 650;
+  color:#fff;
+  background-color:#004fa3;
+}
