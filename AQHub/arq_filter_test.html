@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<body style="background-color:black;">
+
+<!--Arquero-->
+<script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
+
+<script>
+
+	var dt;
+	var fullTable;
+	var shortTable;
+	{{/*  var locSelect = "No location";  */}}
+	locSelect = "Cross Bronx Expy";
+	console.log(locSelect);
+
+	// Loads the csv as an arquero table
+	aq.loadCSV(
+
+		"https://gist.githubusercontent.com/cgettings/c82f154bfea8b291aad94f93f841f857/raw/b0129f204aa49e847cfdd5ad2814db8ebf98a9c0/RT_flat_long.csv"
+
+	).then(data => {
+
+		dt = data;
+
+		fullTable = dt.objects() // puts the data into fullTable to use. 
+		shortTable = fullTable // creating an array we'll slice for time-selection
+		
+		
+		arqTable = aq.from(shortTable)
+		
+		filterTable = arqTable.filter(`d => d.location == '${locSelect}'`)
+		
+		var table_length = filterTable.numRows()
+		var startAt = table_length - 24 // get a starting point of most recent 24 hours
+		
+		avTable = filterTable.slice(startAt, table_length)
+
+		console.log("fullTable:", fullTable)
+		console.log("arqTable:", arqTable)
+		console.log("locSelect:", locSelect)
+		console.log("filterTable:", filterTable)
+		console.log("table_length:", table_length)
+		console.log("startAt:", startAt)
+		console.log("avTable:", avTable)
+		
+		valid_vals = aq.agg(avTable, aq.op.valid('value'))
+		console.log("valid_vals:", valid_vals)
+		
+		if (valid_vals >= 18) {
+
+			avg_24 = aq.agg(avTable, aq.op.mean('value'))
+
+		} else {
+
+			avg_24 = null
+
+		};
+		console.log("avg_24:", avg_24)
+
+	});
+	
+</script>
+
+</body>
