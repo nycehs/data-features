@@ -337,7 +337,7 @@
 									<li>Last measurement at: <span id="printTime"
 										class="badge badge-primary badge-custom-light"></span></li>
 									<li>Most recent 24-hour average: <strong><span class="badge badge-primary badge-custom-dark"><span id="24av">VALUE</span> µg/m3</span></strong></li>
-									<li>This is <strong><span id="comparison" class="badge badge-primary">ABOVE/BELOW</span></strong> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 12 µg/m3 for 24 hours</li>
+									<li>This is <strong><span id="comparison" class="badge badge-primary">ABOVE/BELOW</span></strong> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad">That's good!</span></li>
 								</ul>
 
 							</div>
@@ -1181,11 +1181,14 @@
 
 				// print ABOVE
 				document.getElementById('comparison').innerHTML = "above"
+				document.getElementById('goodBad').innerHTML = "That's not great!"
 
 			} else if (avg_24 <= 35) {
 
 				// print BELOW
 				document.getElementById('comparison').innerHTML = "below"
+				document.getElementById('goodBad').innerHTML = "That's good!"
+
 
 			} else if (avg_24 === null) {
 
