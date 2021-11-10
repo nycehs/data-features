@@ -334,10 +334,9 @@
 							<div id="locInfo" style="display:none; background-color: #eeeeee; border-radius: 3px; border-left: 8px solid #434343" class="py-1 px-1 ml-2 mt-1">
 								<p>Air quality at the <strong><span id="loc">LOCATION</span></strong> monitor:</p>
 								<ul style="list-style-type: none;">
-									<li>Last measurement at: <span id="printTime"
-										class="badge badge-primary badge-custom-light"></span></li>
-									<li>Most recent 24-hour average: <strong><span class="badge badge-primary badge-custom-dark"><span id="24av">VALUE</span> µg/m3</span></strong></li>
-									<li>This is <strong><span id="comparison" class="badge badge-primary">ABOVE/BELOW</span></strong> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad">That's good!</span></li>
+									<li>Last measurement at: <span id="printTime" class="badge badge-primary badge-custom badge-custom-dark"></span></li>
+									<li>Most recent 24-hour average: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">VALUE</span> µg/m3</span></li>
+									<li>This is <span id="comparison" class="badge badge-primary badge-custom">ABOVE/BELOW</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom">That's good!</span></li>
 								</ul>
 
 							</div>
@@ -1175,19 +1174,38 @@
 			
 			document.getElementById('24av').innerHTML = avg_24.toFixed(1)
 			
-			// If this is above 35, print HIGHER; else, print LOWER to comparison
+			// If this is above 35, print "above"; else, print "below" to comparison
 			
-			if (avg_24 > 35) {
+			{{/*  if (avg_24 > 35) {  */}}
+			if (avg_24 > 15) { // for testing
 
 				// print ABOVE
+
 				document.getElementById('comparison').innerHTML = "above"
+				document.getElementById('comparison').classList.remove('badge-custom-below')
+				document.getElementById('comparison').classList.add('badge-custom-above')
+				
+				// That's not great!
+
 				document.getElementById('goodBad').innerHTML = "That's not great!"
+				document.getElementById('goodBad').classList.remove('badge-custom-below')
+				document.getElementById('goodBad').classList.add('badge-custom-above')
 
-			} else if (avg_24 <= 35) {
-
+				
+			{{/*  } else if (avg_24 <= 35) {  */}}
+			} else if (avg_24 <= 15) { // for testing
+				
 				// print BELOW
+
 				document.getElementById('comparison').innerHTML = "below"
+				document.getElementById('comparison').classList.remove('badge-custom-above')
+				document.getElementById('comparison').classList.add('badge-custom-below')
+				
+				// That's good!
+
 				document.getElementById('goodBad').innerHTML = "That's good!"
+				document.getElementById('goodBad').classList.remove('badge-custom-above')
+				document.getElementById('goodBad').classList.add('badge-custom-below')
 
 
 			} else if (avg_24 === null) {

@@ -46,18 +46,23 @@
 
 /* modifying badge colors for air quality details */
 
-.badge-custom-light {
-  padding:.3em .3em .3em .3em;
-  font-size:85%;
-  font-weight: 650;
-  color:#000;
-  background-color:#b2d7ff;
+.badge-custom {
+  padding:.3em .45em .3em .45em;
+  font-size: 85%;
+  font-weight: 600;
 }
 
 .badge-custom-dark {
-  padding:.3em .3em .3em .3em;
-  font-size:85%;
-  font-weight: 650;
   color:#fff;
-  background-color:#004fa3;
+  background-color:#00438a;
+}
+
+.badge-custom-above {
+  color:#fff;
+  background-color:#9A40B5;
+}
+
+.badge-custom-below {
+  color:#fff;
+  background-color:#069068;
 }
