@@ -745,7 +745,7 @@
 
 		// Loads the csv as an arquero table
 		aq.loadCSV(
-			"https://raw.githubusercontent.com/nychealth/realtime-air-quality/main/RT_flat.csv"
+			"https://gist.githubusercontent.com/cgettings/c82f154bfea8b291aad94f93f841f857/raw/b0129f204aa49e847cfdd5ad2814db8ebf98a9c0/RT_flat_long.csv"
 		).then(data => {
 			dt = data;
 
@@ -789,6 +789,8 @@
 
 
 		// establish the original spec. 
+		// TODO: add features from wide-data spec (e.g., tooltips)
+
 		const origSpec = {
 			"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
 			"description": "Real-time air quality",
@@ -801,7 +803,7 @@
 			  "view": {"stroke": "transparent"}
 			},
 			"data": {
-				"url": "https://gist.githubusercontent.com/cgettings/c82f154bfea8b291aad94f93f841f857/raw/55c6427fd5570bcccc9bc13da02e5bf4f807cb5b/RT_flat_long.csv"
+				"name": "lineData"
 			},
 			"layer": [
 				{
@@ -846,6 +848,9 @@
 
 
 			// make all lines gray, thinner, and unmarked
+			// NEED TO MODIFY THIS TO WORK WITH THE LONG-DATA SPEC
+			// can also take length from data
+
 			for (let i = 0; i < 6; i++) {
 				spec.layer[i].encoding.color.value = "lightgray"
 				spec.layer[i].mark.strokeWidth = 1
@@ -877,6 +882,8 @@
 			console.log(locSelect)
 
 			// style the selected series
+			// NEED TO MODIFY THIS TO WORK WITH THE LONG-DATA SPEC
+			
 			spec.layer[x].encoding.color.value = color
 			spec.layer[x].mark.strokeWidth = 2.5
 			spec.layer[x].mark.point = true

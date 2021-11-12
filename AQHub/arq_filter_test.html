@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 
-<body style="background-color:black;">
+<head>
 
-<!--Arquero-->
-<script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
+	<!--Arquero-->
+	<!--<script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script> -->
+	<script src="js/arquero@latest"></script>
+
+</head>
+
+<body style="background-color:black;">
 
 <script>
 
 	var dt;
 	var fullTable;
 	var shortTable;
-	{{/*  var locSelect = "No location";  */}}
-	locSelect = "Cross Bronx Expy";
+	/*  var locSelect = "No location";  */
+	locSelect = "Queensboro Bridge";
 	console.log(locSelect);
 
 	// Loads the csv as an arquero table
 	aq.loadCSV(
 
-		"https://gist.githubusercontent.com/cgettings/c82f154bfea8b291aad94f93f841f857/raw/b0129f204aa49e847cfdd5ad2814db8ebf98a9c0/RT_flat_long.csv"
+		/*  "https://gist.githubusercontent.com/cgettings/c82f154bfea8b291aad94f93f841f857/raw/b0129f204aa49e847cfdd5ad2814db8ebf98a9c0/RT_flat_long.csv"  */
+		"data/RT_flat_long.csv"
 
 	).then(data => {
 
