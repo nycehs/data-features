@@ -221,9 +221,10 @@
 
 			<div class="row mt-3">
 				<div class="col-lg-12">
-					<a href="explorer.html">
-						<button type="button" class="btn btn-secondary btn-sm float-right">Neighborhood air quality
-							data</button></a>
+                    <a href="realtime.html">
+                        <button type="button" class="btn btn-secondary btn-sm float-right">Realtime air quality</button></a>
+                    <a href="explorer.html">
+                        <button type="button" class="btn btn-secondary-outline btn-sm float-right mr-1">Neighborhood air quality</button></a>
 					<h2>Real-Time Air Quality</h2>
 
 				</div>
@@ -232,28 +233,24 @@
 
 			<div class="row mt-2">
 				<div class="col-md-7">
-					<p>NYC's air quality is generally good <a
-							href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/breatheeasy/index.html">and has
-							been improving over time</a>. For PM2.5 (fine particles in the air), NYC meets the national
-						air quality standard of an annual average of 12 μg/m<sup>3</sup>. </p>
+                    <p>NYC's air quality is generally good <a href="http://a816-dohbesp.nyc.gov/IndicatorPublic/Closerlook/breatheeasy/index.html">and has been improving over time</a>. But hour to hour, there's large variation in our air quality - even in neighborhoods with the cleanest air. That means that for short periods, some New Yorkers are exposed to high levels of pollutants that can harm health.</p>
 
-					<p>But hour to hour, there's large variation in our air quality - even in neighborhoods with the
-						cleanest air. That means sometimes, New Yorkers are exposed to high levels of <a
-							href="">pollutants like PM2.5 that can harm health.</a> </p>
-					<p>These high levels are driven by daily changes in traffic volume, weather patterns that can trap
-						emissions, and other short-term events.</p>
+                    <p>Fine particles (PM2.5) are among the most harmful pollutants. Long-term exposure to PM2.5 contributes to an estimated 2,300 deaths from lung and heart disease each year in NYC (1 out of every 20 deaths in NYC), and short-term exposure contributes to asthma emergency department visits and other health threats.</p>
+                         
+                    <p>For PM2.5, NYC meets the national air quality standard of an annual average of 12 μg/m<sup>3</sup>, and a 24-hour average of 35 μg/m<sup>3</sup>. But hour-to-hour and location-by-location, PM2.5 levels vary dramatically and can spike to levels that can harm health, especially for sensitive populations. These higher levels are driven by daily changes in traffic volume, weather patterns that can trap emissions, and other short-term events.</p>
+                    <p>Explore near real-time PM2.5 measurements from sensors around NYC, below.</p>
+
 					<div class="px-2 py-2 my-2" style="background-color:#f0f0f0; border-radius: 5px;">
 						<strong>About the Data</strong>
-						<p>Data are hourly measurements of PM2.5, measured in micrograms per cubic meter of air. Data
-							come from the NYCCAS near-real-time monitor network. <a
-								href="https://github.com/nychealth/realtime-air-quality">Visit our Github repository to
-								download these data</a>. </p>
+                        <p>Data are hourly measurements of PM2.5, measured in micrograms per cubic meter of air (or µg/m<sup>3</sup>). Data come from the NYCCAS near-real-time monitor network. <a href="https://github.com/nychealth/realtime-air-quality">Visit our Github repository to download these data</a>. </p>
+
+								<p><em>Note that all data are preliminary and subject to change.</em></p>
 					</div>
 				</div>
 
 				<div class="col-md-5 ml-auto">
 					<iframe title="Real time AQ monitors" aria-label="map" id="datawrapper-chart-O4tHk"
-						src="https://datawrapper.dwcdn.net/O4tHk/4/" scrolling="no" frameborder="0"
+						src="https://datawrapper.dwcdn.net/O4tHk/5/" scrolling="no" frameborder="0"
 						style="width: 0; min-width: 100% !important; border: none;" height="350"></iframe>
 					<script type="text/javascript">!function () { "use strict"; window.addEventListener("message", (function (e) { if (void 0 !== e.data["datawrapper-height"]) { var t = document.querySelectorAll("iframe"); for (var a in e.data["datawrapper-height"]) for (var r = 0; r < t.length; r++) { if (t[r].contentWindow === e.source) t[r].style.height = e.data["datawrapper-height"][a] + "px" } } })) }();
 					</script>
@@ -274,25 +271,49 @@
 					<div class="row py-1">
 						<div class="col-md-9">
 							<button onclick="changeData(0)" type="button" id="btn0"
-								class="mb-1 selectorbtn btn btn-sm btn-outline-primary">Broadway/35th</button>
+								class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
+									<span style="color: darkgray">
+										<i class="fas fa-square mr-1"></i>
+									</span>
+								Broadway</button>
 							<button onclick="changeData(1)" type="button" id="btn1"
-								class="mb-1 selectorbtn btn btn-sm btn-outline-primary">Cross Bronx Expwy</button>
+								class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
+								<span style="color: purple">
+									<i class="fas fa-square mr-1"></i>
+								</span>
+								Cross Bronx</button>
 							<button onclick="changeData(2)" type="button" id="btn2"
-								class="mb-1 selectorbtn btn btn-sm btn-outline-primary">Queensboro Br</button>
+								class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
+								<span style="color: red">
+									<i class="fas fa-square mr-1"></i>
+								</span>
+								Queensboro Br</button>
 							<button onclick="changeData(3)" type="button" id="btn3"
-								class="mb-1 selectorbtn btn btn-sm btn-outline-primary">Williamsburg Br</button>
+								class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
+								<span style="color: blue">
+									<i class="fas fa-square mr-1"></i>
+								</span>
+								Williamsburg Br</button>
 							<button onclick="changeData(4)" type="button" id="btn4"
-								class="mb-1 selectorbtn btn btn-sm btn-outline-primary">Manhattan Br</button>
+								class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
+								<span style="color: green">
+									<i class="fas fa-square mr-1"></i>
+								</span>
+								Manhattan Br</button>
 							<button onclick="changeData(5)" type="button" id="btn5"
-								class="mb-1 selectorbtn btn btn-sm btn-outline-primary">Queens College</button>
+								class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
+								<span style="color: orange">
+									<i class="fas fa-square mr-1"></i>
+								</span>
+								Queens Col</button>
 
 
 						</div>
 
 						<div class="col-md-3">
 							<button onclick="restore()" type="button" id="btnrestore"
-								class="mb-1 selectorbtn btn btn-sm btn-outline-primary float-right">Show all
-								locations</button>
+								class="mb-1 selectorbtn btn btn-sm btn-outline-primary float-right">Reset/Show all
+								</button>
 						</div>
 
 
@@ -301,8 +322,7 @@
 
 					<div class="row mt-2">
 						<div class="col pl-2">
-							<em class="pl-2">Hourly PM2.5 measurements, in µg/m3 (micrograms per cubic meter of
-								air)</em>
+							<em class="pl-2">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</em>
 							<div id="vis2" style="width: 100%; height: 400px;">
 
 							</div>
@@ -311,20 +331,21 @@
 
 					<div class="row">
 						<div class="col-md-9 mr-auto">
-							<p><em class="pl-2">Last measurement at: <span id="printTime"
-										class="badge badge-light"></span></em></p>
+							<div id="locInfo" style="display:none; background-color: #eeeeee; border-radius: 3px; border-left: 8px solid #434343" class="py-1 px-1 ml-2 mt-1">
+								<p>Air quality at the <strong><span id="loc">LOCATION</span></strong> monitor:</p>
+								<ul style="list-style-type: none;">
+									<li>Last measurement at: <span id="printTime" class="badge badge-primary badge-custom badge-custom-dark"></span></li>
+									<li>Most recent 24-hour average: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">VALUE</span> µg/m3</span></li>
+									<li>This is <span id="comparison" class="badge badge-primary badge-custom">ABOVE/BELOW</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom">That's good!</span></li>
+								</ul>
 
-							<!-- MODIFY THIS TO PRINT VALUE -->
+							</div>
 
-							<p class="pl-2">Most recent 24-hour average for 
-								<span id="loc">LOCATION</span>:
-								<strong><span id="24av">VALUE</span> µg/m3</strong>. This is <strong><span id="comparison">ABOVE/BELOW</span></strong> the
-								24-hour National Ambient Air Quality Standard.</p>
 
 						</div>
 
 						<div class="col-md-3 ml-auto">
-							<form id="numberinput" class="float-right px-1 py-2"
+							<form id="numberinput" class="float-right px-1 py-2 mt-1"
 								style="font-size: 12px; background-color: #eeeeee; border-radius: 3px; clear: all;">
 								<label for="inputNum" style="display:inline-block; font-size: 12px;">Show last</label>
 								<input type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1"
@@ -344,17 +365,14 @@
 				<div class="col-md-6">
 					<h3>Air quality varies because sources vary</h3>
 					<p>In New York City, about 45% of PM2.5 comes from far-away sources, like coal-burning power plants
-						in the Midwest. But the rest comes from <b>local sources</b>. When we study air quality in every
-						neighborhood of the city, we're able to identify the sources that are most closely associated
-						with higher levels of air pollution.</p>
+						in the Midwest. But the rest comes from <b>local sources</b>. </p>
 
 					<div class="card mb-4">
 						<div class="card-body">
 							<h4 class="fs-lg"><i class="fas fa-building mr-1" aria-hidden="true"></i>Buildings</h4>
 							<p>Building density affects a neighborhood's air quality because like vehicles, buildings
 								burn fuel and emit pollutants: their boilers burn oil and gas to produce heat and hot
-								water. This is one reason we often see more air pollution in the winter.</p>
-							<p>Because of new heating oil regulations, PM2.5 has gone down dramatically, and SO2 levels
+								water. This is one reason we often see more air pollution in the winter. Because of new heating oil regulations, PM2.5 has gone down dramatically, and SO2 levels
 								are now indetectable. <a href="https://nyc-ehs.net/besp-report/web/nyccas">Read more at
 									the NYCCAS annual report</a>. </p>
 
@@ -382,13 +400,37 @@
 
 				<div class="col-md-6">
 					<h3>Common patterns in the data</h3>
-					<p>Commonly, we can see spatial differences in air quality (different air quality in different
-						locations), as well as weather patterns, daily spikes, and other spikes that show up in the
-						data. Take a look at the images and see if you can see similar patterns in today's data - or
-						come back tomorrow to check.</p>
+					<p>There are several patterns that commonly show up in the data from our air quality monitors:</p>
+
+						<div class="card mb-4">
+							<div class="card-body">
+								<h4 class="fs-lg"><i class="fas fa-map-signs mr-1" aria-hidden="true"></i>Spatial differences</h4>
+								<p>The monitors are in neighborhoods with different emissions sources, so have
+									different PM2.5 levels. <span style="color:rgb(109, 109, 109)"><b>Midtown</b></span> has
+									the highest traffic density, usually has the most PM2.5. </p>
+	
+								<h4 class="fs-lg"><i class="fas fa-chart-line mr-1" aria-hidden="true"></i>Daily spikes
+								</h4>
+								<p>PM2.5 levels usually rise in the morning as traffic volume increases. These
+									<em>temporal</em> differences (time spikes) are usually greater than
+									<em>spatial</em> differences (the differences between neighborhoods).</p>
+	
+								<h4 class="fs-lg"> <i class="fas fa-cloud-showers-heavy mr-1" aria-hidden="true"></i>Weather patterns</h4>
+								<p> Weather can trap emissions and cause PM2.5 to build up. Sometimes we see a
+									clear west-to-east pattern in rising PM2.5, likely related to a weather
+									pattern moving in to New York City and causing pollution levels to rise as
+									emissions are trapped.</p>
+	
+								<h4 class="fs-lg"><i class="fas fa-exclamation-triangle mr-1" aria-hidden="true"></i>Other spikes</h4>
+								<p>Sometimes there are dramatic spikes
+									at unexpected times, and without having a camera on each monitor, we don't
+									know what causes them - however, they can be explained by something as
+									simple as a truck idling for a few minutes underneath the monitor.</p>
+							</div>
+						</div>
 
 
-
+					<!--
 					<div class="card mb-4">
 						<div class="card-body">
 
@@ -469,6 +511,7 @@
 
 						</div>
 					</div>
+					-->
 
 				</div>
 			</div>
@@ -779,7 +822,7 @@
 						"type": "line",
 						"point": false,
 						"tooltip": true,
-						"interpolate": "natural",
+						"interpolate": "monotone",
 						"strokeWidth": 1.5
 					},
 					"encoding": {
@@ -819,7 +862,7 @@
 						"type": "line",
 						"point": false,
 						"tooltip": true,
-						"interpolate": "natural",
+						"interpolate": "monotone",
 						"strokeWidth": 1.5
 					},
 					"encoding": {
@@ -859,7 +902,7 @@
 						"type": "line",
 						"point": false,
 						"tooltip": true,
-						"interpolate": "natural",
+						"interpolate": "monotone",
 						"strokeWidth": 1.5
 					},
 					"encoding": {
@@ -899,7 +942,7 @@
 						"type": "line",
 						"point": false,
 						"tooltip": true,
-						"interpolate": "natural",
+						"interpolate": "monotone",
 						"strokeWidth": 1.5
 					},
 					"encoding": {
@@ -940,7 +983,7 @@
 						"type": "line",
 						"point": false,
 						"tooltip": true,
-						"interpolate": "natural",
+						"interpolate": "monotone",
 						"strokeWidth": 1.5
 					},
 					"encoding": {
@@ -980,7 +1023,7 @@
 						"type": "line",
 						"point": false,
 						"tooltip": true,
-						"interpolate": "natural",
+						"interpolate": "monotone",
 						"strokeWidth": 1.5
 					},
 					"encoding": {
@@ -1078,8 +1121,13 @@
 				res.view.insert("lineData", shortTable).run()
 			);
 
+			// show the summary box
+			document.getElementById('locInfo').style.display = "block";
+
 			// run getAverage
 			getAverage(x);
+
+
 
 		}
 
@@ -1095,6 +1143,7 @@
 			var startAt = fullTable.length - 24; // get a starting point of most recent 24 hours
 			avTable = fullTable.slice(startAt, fullTable.length) // slicing the table to most recent 24 hours
 			console.log(avTable)
+
 
 			document.getElementById('printTime').innerHTML = avTable[23].starttime
 
@@ -1125,17 +1174,37 @@
 			
 			document.getElementById('24av').innerHTML = avg_24.toFixed(1)
 			
-			// If this is above 35, print HIGHER; else, print LOWER to comparison
+			// If this is above 35, print "above"; else, print "below" to comparison
 			
 			if (avg_24 > 35) {
 
 				// print ABOVE
-				document.getElementById('comparison').innerHTML = "ABOVE"
 
+				document.getElementById('comparison').innerHTML = "above"
+				document.getElementById('comparison').classList.remove('badge-custom-below')
+				document.getElementById('comparison').classList.add('badge-custom-above')
+				
+				// That's not great!
+
+				document.getElementById('goodBad').innerHTML = "That's not great!"
+				document.getElementById('goodBad').classList.remove('badge-custom-below')
+				document.getElementById('goodBad').classList.add('badge-custom-above')
+
+				
 			} else if (avg_24 <= 35) {
-
+				
 				// print BELOW
-				document.getElementById('comparison').innerHTML = "BELOW"
+
+				document.getElementById('comparison').innerHTML = "below"
+				document.getElementById('comparison').classList.remove('badge-custom-above')
+				document.getElementById('comparison').classList.add('badge-custom-below')
+				
+				// That's good!
+
+				document.getElementById('goodBad').innerHTML = "That's good!"
+				document.getElementById('goodBad').classList.remove('badge-custom-above')
+				document.getElementById('goodBad').classList.add('badge-custom-below')
+
 
 			} else if (avg_24 === null) {
 
