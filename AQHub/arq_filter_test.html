@@ -23,7 +23,7 @@
 	aq.loadCSV(
 
 		/*  "https://gist.githubusercontent.com/cgettings/c82f154bfea8b291aad94f93f841f857/raw/b0129f204aa49e847cfdd5ad2814db8ebf98a9c0/RT_flat_long.csv"  */
-		"data/RT_flat_long.csv"
+		"data/RT_flat_long_NA.csv"
 
 	).then(data => {
 
@@ -32,7 +32,7 @@
 		fullTable = dt.objects() // puts the data into fullTable to use. 
 		shortTable = fullTable // creating an array we'll slice for time-selection
 		
-		
+		 
 		arqTable = aq.from(shortTable)
 		
 		filterTable = arqTable.filter(`d => d.location == '${locSelect}'`)
@@ -50,7 +50,17 @@
 		console.log("startAt:", startAt)
 		console.log("avTable:", avTable)
 		
+		{{/*  valid_vals = aq.agg(avTable, aq.op.valid('value'))  */}}
+		
+		avTable = avTable.derive({value: d => aq.op.parse_float(d.value)})
+		{{/*  avTable = avTable.derive({value: aq.op.parse_float('value')})  */}}
+		console.log("avTable:", avTable)
+		
 		valid_vals = aq.agg(avTable, aq.op.valid('value'))
+		{{/*  valid_vals = aq.agg(avTable, d => aq.op.valid(aq.op.parse_float(d.value)))  */}}
+		
+		avTable.groupby('value').count().print(100)
+
 		console.log("valid_vals:", valid_vals)
 		
 		if (valid_vals >= 18) {
