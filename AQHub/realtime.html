@@ -331,9 +331,9 @@
 
 					<div class="row">
 						<div class="col-md-9 mr-auto">
-							<div id="locInfo" style="display:none; background-color: #eeeeee; border-radius: 3px; border-left: 8px solid #434343" class="py-1 px-1 ml-2 mt-1">
+							<div id="locInfoBox" style="display:none; background-color: #eeeeee; border-radius: 3px; border-left: 8px solid #434343" class="py-1 px-1 ml-2 mt-1">
 								<p>Air quality at the <strong><span id="loc">LOCATION</span></strong> monitor:</p>
-								<ul style="list-style-type: none;">
+								<ul id="locInfoDesc" style="list-style-type: none;">
 									<li>Last measurement at: <span id="printTime" class="badge badge-primary badge-custom badge-custom-dark"></span></li>
 									<li>Most recent 24-hour average: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">VALUE</span> µg/m3</span></li>
 									<li>This is <span id="comparison" class="badge badge-primary badge-custom">ABOVE/BELOW</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom">That's good!</span></li>
@@ -1067,8 +1067,17 @@
 		// Grab the buttons for manipulation later
 		var buttons = document.querySelectorAll('.selectorbtn');
 
+		// Save the original locInfoDesc
+		locInfoDesc = document.getElementById('locInfoDesc').innerHTML;
+
 		// this function updates the chart based on the location selection
 		function changeData(x) {
+			
+			// ensure `locInfoDesc` has original innerHTML elements
+			console.log("locInfoDesc:", locInfoDesc)
+
+			document.getElementById('locInfoDesc').innerHTML = locInfoDesc
+
 			// remove active class from buttons and add default class
 			buttons.forEach(button => button.classList.remove('btn-primary'))
 			buttons.forEach(button => button.classList.add('btn-outline-primary'))
@@ -1122,12 +1131,10 @@
 			);
 
 			// show the summary box
-			document.getElementById('locInfo').style.display = "block";
+			document.getElementById('locInfoBox').style.display = "block";
 
 			// run getAverage
 			getAverage(x);
-
-
 
 		}
 
@@ -1136,14 +1143,12 @@
 
 		var arqTable;
 
-
 		// Here, we'll calculate the most recent 24-hour average for a selected neighborhood.
 		function getAverage() {
 			
 			var startAt = fullTable.length - 24; // get a starting point of most recent 24 hours
 			avTable = fullTable.slice(startAt, fullTable.length) // slicing the table to most recent 24 hours
 			console.log(avTable)
-
 
 			document.getElementById('printTime').innerHTML = avTable[23].starttime
 
@@ -1153,63 +1158,78 @@
 
 			document.getElementById('loc').innerHTML = locSelect
 
-			// Count number of entries. Stop if there are <18 entries.
-			// Else, average the entries
+			// deriving a new column `new_col` for the parsed selected column. I want the parsed column to have the 
+			//	selected column's name, so I'm creating a Map object which will rename "new_col" to the value of `locSelect`
 
+			const new_col = new Map()
+
+			new_col.set("new_col", locSelect)
+			console.log("new_col:", new_col)
+
+			// you can use an object that contains a variable name by enclosing the whole expression in back-ticks, then 
+			//	using `${var}` to insert the value
+			// described at https://uwdata.github.io/arquero/api/expressions#limitations
+
+			arqTable = arqTable
+				.derive({new_col: `d => aq.op.parse_float(d['${locSelect}'])`})
+				.rename(new_col)
+			
+			console.log("arqTable (after parse_float and rename):")
+			arqTable.slice(-24,).print(Infinity)
+			
+			// Count number of valid entries.
 			valid_vals = aq.agg(arqTable, aq.op.valid(locSelect));
 			console.log(valid_vals)
 			
+			// change info in locInfoBox depending on number of valid values
+
 			if (valid_vals >= 18) {
+				
+				// If there are 18 or more valid values, average them
 
 				avg_24 = aq.agg(arqTable, aq.op.mean(locSelect));
-
-			} else {
-
-				avg_24 = null;
-
-			};
-			console.log(avg_24)
-			
-			// Print this value to 24av (NEED TO ROUND)
-			
-			document.getElementById('24av').innerHTML = avg_24.toFixed(1)
-			
-			// If this is above 35, print "above"; else, print "below" to comparison
-			
-			if (avg_24 > 35) {
-
-				// print ABOVE
-
-				document.getElementById('comparison').innerHTML = "above"
-				document.getElementById('comparison').classList.remove('badge-custom-below')
-				document.getElementById('comparison').classList.add('badge-custom-above')
 				
-				// That's not great!
-
-				document.getElementById('goodBad').innerHTML = "That's not great!"
-				document.getElementById('goodBad').classList.remove('badge-custom-below')
-				document.getElementById('goodBad').classList.add('badge-custom-above')
-
+				// Print this value to 24av (NEED TO ROUND)
 				
-			} else if (avg_24 <= 35) {
+				document.getElementById('24av').innerHTML = avg_24.toFixed(1)
 				
-				// print BELOW
+				if (avg_24 > 35) {
 
-				document.getElementById('comparison').innerHTML = "below"
-				document.getElementById('comparison').classList.remove('badge-custom-above')
-				document.getElementById('comparison').classList.add('badge-custom-below')
+					// If this is above 35, print "above" to `comparison`
+					
+					document.getElementById('comparison').innerHTML = "above"
+					document.getElementById('comparison').classList.remove('badge-custom-below')
+					document.getElementById('comparison').classList.add('badge-custom-above')
+					
+					// That's not great!
+
+					document.getElementById('goodBad').innerHTML = "That's not great!"
+					document.getElementById('goodBad').classList.remove('badge-custom-below')
+					document.getElementById('goodBad').classList.add('badge-custom-above')
+
+					
+				} else if (avg_24 <= 35) {
+					
+					// if less than 35, print "below" to `comparison`
+
+					document.getElementById('comparison').innerHTML = "below"
+					document.getElementById('comparison').classList.remove('badge-custom-above')
+					document.getElementById('comparison').classList.add('badge-custom-below')
+					
+					// That's good!
+
+					document.getElementById('goodBad').innerHTML = "That's good!"
+					document.getElementById('goodBad').classList.remove('badge-custom-above')
+					document.getElementById('goodBad').classList.add('badge-custom-below')
 				
-				// That's good!
+				}
 
-				document.getElementById('goodBad').innerHTML = "That's good!"
-				document.getElementById('goodBad').classList.remove('badge-custom-above')
-				document.getElementById('goodBad').classList.add('badge-custom-below')
+			} else if (valid_vals < 18) {
+				
+				// If there are less than 18 valid values, print a 'no-value' message
 
+				document.getElementById('locInfoDesc').innerHTML = "<strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours."
 
-			} else if (avg_24 === null) {
-
-				// print "NA"
-				document.getElementById('comparison').innerHTML = "NA"
 			}
 
 			// Note - this may be easier with long version; location-selection buttons can apply a filter to the long file, which we can then pipe into the chart. 
