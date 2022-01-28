@@ -49,6 +49,8 @@
             map.fitBounds(e.target.getBounds());
         }
 
+        // creating variables for leaflet objects
+
         var monitors = L.featureGroup();
         var monitors_center = L.Point();
         var monitors_bounds = L.Bounds();
@@ -77,13 +79,12 @@
             // getting the bounds of the markers
 
             monitors_bounds = monitors.getBounds();
+            console.log("monitors_bounds inside:", monitors_bounds);
 
             // now getting the center of the counds
 
             monitors_center = monitors_bounds.getCenter();
-
-            console.log("monitors_bounds inside:", monitors_bounds)
-            console.log("monitors_center inside:", monitors_center)
+            console.log("monitors_center inside:", monitors_center);
 
             // initiating the map object 
 
