@@ -310,6 +310,12 @@
 
                     <div class="row py-1">
                         <div class="col-md-9">
+                            <!-- <button onclick="changeData(0)" type="button" id="btn0"
+                                class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
+                                    <span style="color: darkgray">
+                                        <i class="fas fa-square mr-1"></i>
+                                    </span>
+                                Broadway</button> -->
                             <button onclick="changeData(0)" type="button" id="btn0"
                                 class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
                                 <span style="color: purple">
@@ -322,6 +328,12 @@
                                     <i class="fas fa-square mr-1"></i>
                                 </span>
                                 Queensboro Bridge</button>
+                            <!-- <button onclick="changeData(3)" type="button" id="btn3"
+                                class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
+                                <span style="color: blue">
+                                    <i class="fas fa-square mr-1"></i>
+                                </span>
+                                Williamsburg Br</button> -->
                             <button onclick="changeData(2)" type="button" id="btn2"
                                 class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
                                 <span style="color: green">
@@ -457,6 +469,91 @@
                                     simple as a truck idling for a few minutes underneath the monitor.</p>
                             </div>
                         </div>
+
+
+                    <!--
+                    <div class="card mb-4">
+                        <div class="card-body">
+
+                            <div class="row px-2">
+                                <div class="nav flex-fill nav-pills" id="v-pills-tab" role="tablist"
+                                    aria-orientation="vertical">
+                                    <a class="nav-link active" id="v-pills-spatial-tab" data-toggle="pill"
+                                        href="#v-pills-spatial" role="tab" aria-controls="v-pills-spatial"
+                                        aria-selected="true">Spatial differences</a>
+                                    <a class="nav-link" id="v-pills-daily-tab" data-toggle="pill" href="#v-pills-daily"
+                                        role="tab" aria-controls="v-pills-daily" aria-selected="false">Daily spikes</a>
+
+                                    <a class="nav-link" id="v-pills-weather-tab" data-toggle="pill"
+                                        href="#v-pills-weather" role="tab" aria-controls="v-pills-weather"
+                                        aria-selected="false">Weather patterns</a>
+                                    <a class="nav-link" id="v-pills-other-tab" data-toggle="pill" href="#v-pills-other"
+                                        role="tab" aria-controls="v-pills-other" aria-selected="false">Other spikes</a>
+                                </div>
+                            </div>
+
+                            <div class="row p-2">
+                                <div class="tab-content" id="v-pills-tabContent">
+                                    <div class="tab-pane fade show active" id="v-pills-spatial" role="tabpanel"
+                                        aria-labelledby="v-pills-spatial-tab">
+
+                                        <figure class="figure">
+                                            The monitors are in neighborhoods with different emissions sources, so have
+                                            different PM2.5 levels. <span style="color:gray"><b>Midtown</b></span> has
+                                            the highest traffic density, usually has the most PM2.5. </figcaption>
+                                            <img src="images/a-spatial.png" class="figure-img img-fluid rounded"
+                                                alt="ALT TEXT HERE">
+
+                                        </figure>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-daily" role="tabpanel"
+                                        aria-labelledby="v-pills-daily-tab">
+
+                                        <figure class="figure">
+                                            PM2.5 levels usually rise in the morning as traffic volume increases. These
+                                            <em>temporal</em> differences (time spikes) are usually greater than
+                                            <em>spatial</em> differences (the differences between neighborhoods).
+                                            </figcaption>
+                                            <img src="images/a-daily.png" class="figure-img img-fluid rounded"
+                                                alt="Daily changes in PM2.5 measurements from air quality monitors">
+
+                                        </figure>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-other" role="tabpanel"
+                                        aria-labelledby="v-pills-other-tab">
+
+                                        <figure class="figure">
+                                            Sometimes there are <span style="color:gray;"><b>dramatic spikes</b></span>
+                                            at unexpected times, and without having a camera on each monitor, we don't
+                                            know what causes them - however, they can be explained by something as
+                                            simple as a truck idling for a few minutes underneath the monitor.
+                                            </figcaption>
+                                            <img src="images/a-spike.png" class="figure-img img-fluid rounded"
+                                                alt="A spike in PM2.5 measurements from one air quality monitor">
+
+                                        </figure>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-weather" role="tabpanel"
+                                        aria-labelledby="v-pills-weather-tab">
+
+                                        <figure class="figure">
+                                            Weather can trap emissions and cause PM2.5 to build up. Sometimes we see a
+                                            clear west-to-east pattern in rising PM2.5, likely related to a weather
+                                            pattern moving in to New York City and causing pollution levels to rise as
+                                            emissions are trapped.</figcaption>
+                                            <img src="images/a-weather.png" class="figure-img img-fluid rounded"
+                                                alt="ALT TEXT HERE">
+
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    -->
+
                 </div>
             </div>
         </div>
@@ -878,7 +975,15 @@
         var fullTable;
         var shortTable;
         var locSelect = "No location"
+        var orig_vgSpec;
         var current_spec;
+        var current_vgSpec;
+
+        var vis2 = document.getElementById('vis2');
+        
+        // explicitly defining colors and locations. would love this to be programmatic in the future.
+        // var monitor_colors = ["darkgray", "purple", "red", "blue", "green", "orange"];
+        // var monitor_locations = ["Broadway/35th St", "Cross Bronx Expy", "Queensboro Bridge", "Williamsburg Bridge", "Manhattan Bridge", "Queens College"]
         
         // Loads the csv as an arquero table
         
@@ -894,10 +999,23 @@
             current_spec = origSpec;
             
             // get the full Vega spec from the vega-lite spec
-            
+
             vegaEmbed("#vis2", origSpec).then((res) => {
+
+                orig_vgSpec = res.vgSpec;
                 res.view.insert("lineData", fullTable).run()
+                console.log("orig_vgSpec:", orig_vgSpec);
+                // res.view.renderer("svg");
+
+                current_vgSpec = orig_vgSpec;
+
             });
+
+
+            // inserts fullTable into the spec and draws the chart
+            // vegaEmbed("#vis2", orig_vgSpec).then((res) => {
+            //     res.view.insert("lineData", fullTable).run()
+            // });
             
         });
         
@@ -909,121 +1027,186 @@
             event.preventDefault();
             inputNum = document.getElementById('inputNum').value;
             updateChart(inputNum);
-            
+
         });
-        
-        
+
+
         // this function updates the chart based on timeselection
         function updateChart(x) {
-            
+
+            // console.log("current_spec:", current_spec);
+
+            // console.log("updateChart locSelect:", locSelect);
+            // console.log("updateChart color:", color);
+
             var inputHours // hours in a day
             inputHours = x * 24;
-            
+
             var startingPoint;
             startingPoint = fullTable.length - inputHours;
             console.log('show chart for ' + inputHours + " hours");
-            
+
             shortTable = fullTable.slice(startingPoint, fullTable.length)
+            // console.log("updateChart shortTable:", shortTable);
+
+            // get the full Vega spec from the vega-lite spec
             
+            // vegaEmbed("#vis2", current_spec).then((res) => {
+            //     current_vgSpec = res.vgSpec;
+            // });
+
             // inserts fullTable into the spec and draws the chart
-            vegaEmbed("#vis2", current_spec).then((res) => {
+            vegaEmbed("#vis2", current_vgSpec).then((res) => {
+                // res.view.insert("lineData", shortTable).run()
+                // res.view.remove("lineData").run()
                 res.view.insert("lineData", shortTable).run()
-                
-                current_spec = res.spec;
+                // res.view.renderer("svg");
+
+                // current_spec = res.spec;
+                current_vgSpec = res.vgSpec;
+                // console.log("updateChart current_spec:", current_spec);
+                console.log("updateChart current_vgSpec:", current_vgSpec);
             });
-            
+
+            // console.log("updateChart 2 current_spec:", current_spec);
+
         }
-        
+
+
         // establish the spec that we'll manipulate and chart.
-        
+        // var spec = origSpec;
+
         // Grab the buttons for manipulation later
         var buttons = document.querySelectorAll('.selectorbtn');
         var buttons_orig = buttons;
         var locSelect;
         var color;
-        
+
         // Save the original locInfoBox
         locInfoBox = document.getElementById('locInfoBox').outerHTML;
-        
+
         // Save the original locInfoDesc
         locInfoDesc = document.getElementById('locInfoDesc').innerHTML;
-        
-        
+
         // this function updates the chart based on the location selection
         function changeData(x) {
-            
+
+            // console.log("changeData current_spec:", current_spec);
+
+            // var spec = origSpec;
+
             // ensure `locInfoDesc` has original innerHTML elements
-            
+
             document.getElementById('locInfoDesc').innerHTML = locInfoDesc
-            
+
             // remove active class from buttons and add default class
             buttons.forEach(button => button.classList.remove('btn-primary'))
             buttons.forEach(button => button.classList.add('btn-outline-primary'))
-            
-            
+
+
             // add active class for selected button and remove default class
             var btn = "btn" + x;
             document.getElementById(btn).classList.add('btn-primary');
             document.getElementById(btn).classList.remove('btn-outline-primary')
-            
-            
-            // make all lines gray, thinner, and unmarked
-            for (let i = 0; i < current_spec.layer.length; i++) {
-                current_spec.layer[i].encoding.color.value = "lightgray"
-                current_spec.layer[i].mark.strokeWidth = 1
-                current_spec.layer[i].mark.point = false
-            };
-            
-            // zoom to the corresponding marker
-            map.setView(monitors[x].getLatLng(), 13);
 
-            // open marker's popup
-            monitors[x].openPopup();
-            
-            // create a color variable
-            color = monitor_locations[x].Color;
-            locSelect = monitor_locations[x].Location;
-            
-            
+
             // make all lines gray, thinner, and unmarked
-            for (let i = 0; i < current_spec.layer.length; i++) {
-                current_spec.layer[i].encoding.color.value = "lightgray"
-                current_spec.layer[i].mark.strokeWidth = 1
-                current_spec.layer[i].mark.point = false
-            };
-            
-            // style the selected series
-            current_spec.layer[x].encoding.color.value = color
-            current_spec.layer[x].mark.strokeWidth = 2.5
-            current_spec.layer[x].mark.point = true
-            
-            
-            // redraw the chart
-            vegaEmbed("#vis2", current_spec).then((res) => {
-                res.view.insert("lineData", shortTable).run(); // shortTable is fullTable until updateChart is called
-                current_spec = res.spec;
+            // for (let i = 0; i < current_spec.layer.length; i++) {
+            //     current_spec.layer[i].encoding.color.value = "lightgray"
+            //     current_spec.layer[i].mark.strokeWidth = 1
+            //     current_spec.layer[i].mark.point = false
+            // };
+
+            // console.log("changeData current_vgSpec:", current_vgSpec);
+
+            map.setView([monitor_locations[x].Latitude, monitor_locations[x].Longitude], 13)
+
+            // create a color variable
+            console.log("changeData color:", monitor_locations[x].Color)
+            color = monitor_locations[x].Color;
+
+            console.log("changeData location:", monitor_locations[x].Location)
+            locSelect = monitor_locations[x].Location;
+
+            // make all lines gray, thinner, and unmarked
+            for (let i = 0; i < current_vgSpec.marks.length; i++) {
+
+                console.log("style:", current_vgSpec.marks[i].style[0])
+                
+                if (current_vgSpec.marks[i].type == "line") {
+                    current_vgSpec.marks[i].encode.update.stroke.value = "lightgray";
+                    current_vgSpec.marks[i].encode.update.strokeWidth.value = 1;
+                    
+                }
+                
+                current_vgSpec.marks[x].encode.update.strokeWidth.value = 2.5;
+                current_vgSpec.marks[x].encode.update.stroke.value = color;
+                // current_vgSpec.marks[x].style = ["line", "point"];
+                // current_vgSpec.marks[x].type == "line"
             }
             
-            );
+            // neighborhoodData = nyccasData.filter(function (sf){
+            //     return sf.NTACode === selectedNeighborhood;
+            // });
             
+            // make all lines gray, thinner, and unmarked
+            // for (let i = 0; i < current_spec.layer.length; i++) {
+            //     current_spec.layer[i].encoding.color.value = "lightgray"
+            //     current_spec.layer[i].mark.strokeWidth = 1
+            //     current_spec.layer[i].mark.point = false
+            // };
+
+            // console.log(locSelect)
+
+            // style the selected series
+            // current_spec.layer[x].encoding.color.value = color
+            // current_spec.layer[x].mark.strokeWidth = 2.5
+            // current_spec.layer[x].mark.point = true
+
+            // console.log("changeData shortTable:", shortTable)
+
+            // get the full Vega spec from the vega-lite spec
+
+            // vegaEmbed("#vis2", current_spec).then((res) => {
+            //     current_vgSpec = res.vgSpec;
+            // });
+
+            // redraw the chart
+            vegaEmbed("#vis2", current_vgSpec).then((res) => {
+            // vegaEmbed("#vis2", current_spec).then((res) => {
+                // res.view.insert("lineData", shortTable).run(); // shortTable is fullTable until updateChart is called
+                // res.view.initialize().run()
+                res.view.remove("lineData").run()
+                res.view.insert("lineData", shortTable).run()
+                // res.view.renderer("svg");
+                // res.view.finalize().run()
+
+                current_spec = res.spec;
+                current_vgSpec = res.vgSpec;
+                console.log("changeData current_spec:", current_spec);
+                console.log("changeData current_vgSpec:", current_vgSpec);                
+            }
+
+            );
+
             // show the summary box
             document.getElementById('locInfoBox').style.display = "block";
-            
+
             // run getAverage
             getAverage();
-            
+
         }
-        
 
         var avTable; // creating an abridged data table
         var selectedLoc;
         var arqTable;
-        
+
         // Here, we'll calculate the most recent 24-hour average for a selected neighborhood.
         function getAverage() {
             
             var startAt = fullTable.length - 24; // get a starting point of most recent 24 hours
             avTable = fullTable.slice(startAt, fullTable.length) // slicing the table to most recent 24 hours
+            // console.log(avTable)
 
             document.getElementById('printTime').innerHTML = avTable[23].starttime
 
@@ -1038,8 +1221,8 @@
 
             const new_col = new Map()
 
-            new_col.set("new_col", locSelect)
-            console.log("new_col:", new_col)
+            // new_col.set("new_col", locSelect)
+            // console.log("new_col:", new_col)
 
             // you can use an object that contains a variable name by enclosing the whole expression in back-ticks, then 
             //	using `${var}` to insert the value
@@ -1049,12 +1232,12 @@
                 .derive({new_col: `d => aq.op.parse_float(d['${locSelect}'])`})
                 .rename(new_col)
             
-            console.log("arqTable (after parse_float and rename):")
-            arqTable.slice(-24,).print(Infinity)
+            // console.log("arqTable (after parse_float and rename):")
+            // arqTable.slice(-24,).print(Infinity)
             
             // Count number of valid entries.
             valid_vals = aq.agg(arqTable, aq.op.valid(locSelect));
-            console.log("valid_vals:", valid_vals)
+            // console.log(valid_vals)
             
             // change info in locInfoBox depending on number of valid values
 
@@ -1114,6 +1297,7 @@
         //runs getAverage on slight delay so fullTable loads
         // setTimeout( function() { getAverage(); }, 3000);
 
+        // console.log(this);
         
         // function to reset zoom on click
         
@@ -1124,8 +1308,7 @@
         // creating variables for leaflet objects
         
         var map;
-        var monitors_group = L.featureGroup();
-        var monitors;
+        var monitors = L.featureGroup();
         var monitors_center = L.Point();
         var monitors_bounds = L.Bounds();
         var monitor_locations;
@@ -1133,6 +1316,8 @@
         d3.csv("./data/monitor_locations.csv").then(data => {
             
             monitor_locations = data;
+            
+            // console.log("monitor_locations:", monitor_locations)
             
             // adding each monitor to the feature group
             
@@ -1145,7 +1330,7 @@
                     color: color_convert.to_hex(monitor_locations[i].Color)
                 });
                 
-                var this_monitor = L.marker([monitor.Latitude, monitor.Longitude], {title: monitor.Location, icon: this_icon}).bindPopup(monitor.Location).addTo(monitors_group)
+                var this_monitor = L.marker([monitor.Latitude, monitor.Longitude], {title: monitor.Location, icon: this_icon}).addTo(monitors)
 
                 // setting up zoom on click
                 
@@ -1155,21 +1340,25 @@
                 });
                 
             });
-            monitors = monitors_group.getLayers();
-            console.log("monitors:", monitors)
+            
+            // console.log("monitors inside:", monitors)
             
             // getting the bounds of the markers
             
-            monitors_bounds = monitors_group.getBounds();
+            monitors_bounds = monitors.getBounds();
+            // console.log("monitors_bounds inside:", monitors_bounds);
             
             // now getting the center of the counds
             
             monitors_center = monitors_bounds.getCenter();
+            // console.log("monitors_center inside:", monitors_center);
             
             // initiating the map object 
             
             map = L.map('map').setView(monitors_center, 10).fitBounds(monitors_bounds);
 
+            // console.log("map:", map)
+            
             // adding a tile layer
             
             L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -1180,7 +1369,7 @@
             
             // adding the monitor markers to the map
             
-            monitors_group.addTo(map);
+            monitors.addTo(map);
 
             //---------------------------------------------------------------------------//
             // easyButton to clear the markers and lines
@@ -1204,11 +1393,50 @@
         // reload page to restore defaults. There may be a better way to do this!
         function restore() {
             
+            console.log("locSelect:", locSelect)
+            console.log("color:", color)
+            
+            locSelect = "No location";
+            color = [];
+            
+            console.log("locSelect:", locSelect)
+            console.log("color:", color)
+            
+            // reset map zoom
+            
+            resetZoom();
+            
+            // reset info box to be blank (like initial)
+            
+            document.getElementById('locInfoBox').outerHTML = locInfoBox;
+            document.getElementById('inputNum').value = "";
+            
+            // remove active class from buttons and add default class
+            buttons.forEach(button => button.classList.remove('btn-primary'))
+            buttons.forEach(button => button.classList.add('btn-outline-primary'))
+
+            current_vgSpec = orig_vgSpec;
+            // current_spec = origSpec;
+
+            // document.getElementById('vis2').outerHTML = vis2.outerHTML;
+
+            // shortTable = [];
+            
+            // vegaEmbed("#vis2", orig_vgSpec).then((res) => {
+            // // vegaEmbed("#vis2", origSpec).then((res) => {
+            //     res.view.remove("lineData").run()
+            //     res.view.insert("lineData", fullTable).run()
+            //     // res.view.renderer("svg");
+            //     res.view.finalize().run()
+            // });
+            
             location.reload();
         }
-        
+
+
     </script>
-    
+
+
 </body>
 
 </html>
