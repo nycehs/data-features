@@ -679,228 +679,40 @@
     <!--Arquero-->
     <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
     
-    <!--Chart spec-->
+    <!--drawing charts-->
     <script>
         
-        // establish the original spec. 
-        const origSpec = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "description": "Real-time air quality",
-            "width": "container",
-            "height": "container",
-            "config": {
-                "background": "#ffffff00",
-                "axisX": {
-                    "grid": false,
-                    "ticks": true,
-                    "labels": true
-                },
-                "axisY": {
-                    "domain": false,
-                    "ticks": false,
-                    "gridDash": [
-                        2
-                    ],
-                    "gridWidth": 1
-                },
-                "view": {
-                    "stroke": "transparent"
-                }
-            },
-            "data": {
-                "name": "lineData"
-            },
-            "layer": [
-                {
-                    "mark": {
-                        "type": "line",
-                        "point": false,
-                        "tooltip": true,
-                        "interpolate": "monotone",
-                        "strokeWidth": 1.5
-                    },
-                    "encoding": {
-                        "x": {
-                            "field": "starttime",
-                            "type": "temporal",
-                            "title": " "
-                        },
-                        "y": {
-                            "field": "Cross Bronx Expy",
-                            "type": "quantitative",
-                            "title": " "
-                        },
-                        "color": {
-                            "value": "purple"
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Cross Bronx Expy",
-                                "title": "PM2.5 (µg/m3)"
-                            },
-                            {
-                                "field": "TOD",
-                                "type": "nominal",
-                                "title": "Time"
-                            },
-                            {
-                                "field": "starttime",
-                                "type": "temporal",
-                                "title": "Date"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "mark": {
-                        "type": "line",
-                        "point": false,
-                        "tooltip": true,
-                        "interpolate": "monotone",
-                        "strokeWidth": 1.5
-                    },
-                    "encoding": {
-                        "x": {
-                            "field": "starttime",
-                            "type": "temporal",
-                            "title": " "
-                        },
-                        "y": {
-                            "field": "Queensboro Bridge",
-                            "type": "quantitative",
-                            "title": " "
-                        },
-                        "color": {
-                            "value": "red"
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Queensboro Bridge",
-                                "title": "PM2.5 (µg/m3)"
-                            },
-                            {
-                                "field": "TOD",
-                                "type": "nominal",
-                                "title": "Time"
-                            },
-                            {
-                                "field": "starttime",
-                                "type": "temporal",
-                                "title": "Date"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "mark": {
-                        "type": "line",
-                        "point": false,
-                        "tooltip": true,
-                        "interpolate": "monotone",
-                        "strokeWidth": 1.5
-                    },
-                    "encoding": {
-                        "x": {
-                            "field": "starttime",
-                            "type": "temporal",
-                            "title": " "
-                        },
-                        "y": {
-                            "field": "Manhattan Bridge",
-                            "type": "quantitative",
-                            "title": " "
-                        },
-                        "color": {
-                            "value": "green"
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Manhattan Bridge",
-                                "title": "PM2.5 (µg/m3)"
-                            },
-                            {
-                                "field": "TOD",
-                                "type": "nominal",
-                                "title": "Time"
-                            },
-                            {
-                                "field": "starttime",
-                                "type": "temporal",
-                                "title": "Date"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "mark": {
-                        "type": "line",
-                        "point": false,
-                        "tooltip": true,
-                        "interpolate": "monotone",
-                        "strokeWidth": 1.5
-                    },
-                    "encoding": {
-                        "x": {
-                            "field": "starttime",
-                            "type": "temporal",
-                            "title": " "
-                        },
-                        "y": {
-                            "field": "Queens College",
-                            "type": "quantitative",
-                            "title": " "
-                        },
-                        "color": {
-                            "value": "orange"
-                        },
-                        "tooltip": [
-                            {
-                                "field": "Queens College",
-                                "title": "PM2.5 (µg/m3)"
-                            },
-                            {
-                                "field": "TOD",
-                                "type": "nominal",
-                                "title": "Time"
-                            },
-                            {
-                                "field": "starttime",
-                                "type": "temporal",
-                                "title": "Date"
-                            }
-                        ]
-                    }
-                }
-            ]
-        };    
-        
+        var current_spec;
         var dt;
         var fullTable;
         var shortTable;
         var locSelect = "No location"
-        var current_spec;
         
-        // Loads the csv as an arquero table
-        
-        aq.loadCSV(
-            "https://raw.githubusercontent.com/nychealth/realtime-air-quality/main/RT_flat.csv"
-        ).then(data => {
-            dt = data;
+        d3.json("./js/origSpec.json").then(data => {
             
-            fullTable = dt.objects(); // puts the data into fullTable to use. 
-            shortTable = fullTable; // creating an array we'll slice for time-selection
+            current_spec = $.extend({}, data);
             
-            // save the original spec as "current"
-            current_spec = origSpec;
+        }).then(() => {
             
-            // get the full Vega spec from the vega-lite spec
+            // Loads the csv as an arquero table
             
-            vegaEmbed("#vis2", origSpec).then((res) => {
-                res.view.insert("lineData", fullTable).run()
+            aq.loadCSV(
+                "https://raw.githubusercontent.com/nychealth/realtime-air-quality/main/RT_flat.csv"
+            ).then(data => {
+                dt = data;
+                
+                fullTable = dt.objects(); // puts the data into fullTable to use. 
+                shortTable = fullTable; // creating an array we'll slice for time-selection
+                
+                vegaEmbed("#vis2", current_spec).then((res) => {
+
+                    res.view.insert("lineData", fullTable).run()
+                    current_spec = $.extend({}, res.spec);
+                    
+                });
+                
             });
-            
         });
-        
         
         var inputNum; // the number of days we want to select
         
@@ -921,15 +733,16 @@
             
             var startingPoint;
             startingPoint = fullTable.length - inputHours;
-            console.log('show chart for ' + inputHours + " hours");
+            // console.log('show chart for ' + inputHours + " hours");
             
             shortTable = fullTable.slice(startingPoint, fullTable.length)
             
             // inserts fullTable into the spec and draws the chart
             vegaEmbed("#vis2", current_spec).then((res) => {
-                res.view.insert("lineData", shortTable).run()
                 
-                current_spec = res.spec;
+                res.view.insert("lineData", shortTable).run()
+                current_spec = $.extend({}, res.spec);
+
             });
             
         }
@@ -942,39 +755,14 @@
         var locSelect;
         var color;
         
-        // Save the original locInfoBox
+        // Save the original locInfoBox & locInfoDesc
         locInfoBox = document.getElementById('locInfoBox').outerHTML;
-        
-        // Save the original locInfoDesc
         locInfoDesc = document.getElementById('locInfoDesc').innerHTML;
-        
         
         // this function updates the chart based on the location selection
         function changeData(x) {
             
-            // ensure `locInfoDesc` has original innerHTML elements
-            
-            document.getElementById('locInfoDesc').innerHTML = locInfoDesc
-            
-            // remove active class from buttons and add default class
-            buttons.forEach(button => button.classList.remove('btn-primary'))
-            buttons.forEach(button => button.classList.add('btn-outline-primary'))
-            
-            
-            // add active class for selected button and remove default class
-            var btn = "btn" + x;
-            document.getElementById(btn).classList.add('btn-primary');
-            document.getElementById(btn).classList.remove('btn-outline-primary')
-            
-            
-            // make all lines gray, thinner, and unmarked
-            for (let i = 0; i < current_spec.layer.length; i++) {
-                current_spec.layer[i].encoding.color.value = "lightgray"
-                current_spec.layer[i].mark.strokeWidth = 1
-                current_spec.layer[i].mark.point = false
-            };
-            
-            // zoom to the corresponding marker
+            // zoom to the corresponding leaflet marker
             map.setView(monitors[x].getLatLng(), 13);
 
             // open marker's popup
@@ -984,6 +772,18 @@
             color = monitor_locations[x].Color;
             locSelect = monitor_locations[x].Location;
             
+            // ensure `locInfoDesc` has original innerHTML elements
+            
+            document.getElementById('locInfoDesc').innerHTML = locInfoDesc
+            
+            // remove active class from buttons and add default class
+            buttons.forEach(button => button.classList.remove('btn-primary'))
+            buttons.forEach(button => button.classList.add('btn-outline-primary'))
+            
+            // add active class for selected button and remove default class
+            var btn = "btn" + x;
+            document.getElementById(btn).classList.add('btn-primary');
+            document.getElementById(btn).classList.remove('btn-outline-primary')
             
             // make all lines gray, thinner, and unmarked
             for (let i = 0; i < current_spec.layer.length; i++) {
@@ -997,14 +797,13 @@
             current_spec.layer[x].mark.strokeWidth = 2.5
             current_spec.layer[x].mark.point = true
             
-            
             // redraw the chart
             vegaEmbed("#vis2", current_spec).then((res) => {
+                
                 res.view.insert("lineData", shortTable).run(); // shortTable is fullTable until updateChart is called
-                current_spec = res.spec;
-            }
-            
-            );
+                current_spec = $.extend({}, res.spec);
+                
+            });
             
             // show the summary box
             document.getElementById('locInfoBox').style.display = "block";
@@ -1108,12 +907,9 @@
             }
 
             // Note - this may be easier with long version; location-selection buttons can apply a filter to the long file, which we can then pipe into the chart. 
-
+            
         }
-
-        //runs getAverage on slight delay so fullTable loads
-        // setTimeout( function() { getAverage(); }, 3000);
-
+        
         
         // function to reset zoom on click
         
@@ -1145,7 +941,11 @@
                     color: color_convert.to_hex(monitor_locations[i].Color)
                 });
                 
-                var this_monitor = L.marker([monitor.Latitude, monitor.Longitude], {title: monitor.Location, icon: this_icon}).bindPopup(monitor.Location).addTo(monitors_group)
+                var this_monitor = 
+                    L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon})
+                    // .bindPopup(monitor.Location)
+                    .bindTooltip(monitor.Location, {permanent: true, opacity: 0.8})
+                    .addTo(monitors_group)
 
                 // setting up zoom on click
                 
@@ -1156,7 +956,6 @@
                 
             });
             monitors = monitors_group.getLayers();
-            console.log("monitors:", monitors)
             
             // getting the bounds of the markers
             
@@ -1185,7 +984,7 @@
             //---------------------------------------------------------------------------//
             // easyButton to clear the markers and lines
             //---------------------------------------------------------------------------//
-
+            
             L.easyButton({
                 position: "bottomleft",
                 states: [{
@@ -1198,17 +997,59 @@
                     }
                 }]
             }).addTo(map);                            
-
-            });
-        
-        // reload page to restore defaults. There may be a better way to do this!
-        function restore() {
             
-            location.reload();
-        }
+        });
         
-    </script>
-    
-</body>
+        // restore defaults
+        function restore() {
+
+            // chart vars
+            
+            locSelect = "No location";
+            inputNum = [];
+            color = [];
+            
+            // reset map zoom
+            
+            resetZoom();
+
+            // close popups
+
+            monitors.forEach(monitor => {monitor.closePopup()})
+            
+            // reset info box to be blank (like initial)
+
+            document.getElementById('locInfoBox').outerHTML = locInfoBox;
+            document.getElementById('inputNum').value = "";
+            
+            // remove active class from buttons and add default class
+
+            buttons.forEach(button => button.classList.remove('btn-primary'))
+            buttons.forEach(button => button.classList.add('btn-outline-primary'))        
+
+            var restore_spec;
+            
+            d3.json("./js/origSpec.json")
+            .then(data => {
+                
+                // create 1-time use spec
+                restore_spec = $.extend({}, data);
+
+                // reset current_spec to default
+                current_spec = $.extend({}, data);
+                
+                // redraw the chart
+                vegaEmbed("#vis2", restore_spec).then((res) => {
+                        
+                        res.view.insert("lineData", fullTable).run(); // shortTable is fullTable until updateChart is called
+                        
+                    });
+
+                })
+            }
+            
+        </script>
+        
+    </body>
 
 </html>
