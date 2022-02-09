@@ -707,7 +707,8 @@
                 vegaEmbed("#vis2", current_spec).then((res) => {
 
                     res.view.insert("lineData", fullTable).run()
-                    current_spec = $.extend({}, res.spec);
+                    // current_spec = $.extend({}, res.spec);
+                    console.log("current_spec === res.spec", current_spec === res.spec)
                     
                 });
                 
@@ -741,8 +742,9 @@
             vegaEmbed("#vis2", current_spec).then((res) => {
                 
                 res.view.insert("lineData", shortTable).run()
-                current_spec = $.extend({}, res.spec);
-
+                // current_spec = $.extend({}, res.spec);
+                console.log("current_spec === res.spec", current_spec === res.spec)
+                
             });
             
         }
@@ -801,7 +803,8 @@
             vegaEmbed("#vis2", current_spec).then((res) => {
                 
                 res.view.insert("lineData", shortTable).run(); // shortTable is fullTable until updateChart is called
-                current_spec = $.extend({}, res.spec);
+                // current_spec = $.extend({}, res.spec);
+                // console.log("current_spec === res.spec", current_spec === res.spec);
                 
             });
             
