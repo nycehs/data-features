@@ -300,13 +300,9 @@
 
             <div class="container-fluid">
                 <div class="row no-padding mt-5">
-                    <div class="col-md-4">
-                        <button onclick="restore()" type="button" id="btnrestore"
-                        class="mb-1 selectorbtn btn btn-sm btn-outline-primary float-left">Reset/Show all
-                        </button>
-                    </div>
 
-                    <div class="col-md-8">
+
+                    <div class="col-md-8 ml-auto">
                         <button onclick="changeData(0)" type="button" id="btn0"
                         class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
                         <span style="color: purple">
@@ -325,6 +321,7 @@
                             <i class="fas fa-square mr-1"></i>
                         </span>
                         Manhattan Bridge</button>
+
                     <button onclick="changeData(3)" type="button" id="btn3"
                         class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
                         <span style="color: orange">
@@ -332,14 +329,24 @@
                         </span>
                         Queens College</button>
 
-                        <div id="numberinput" class="float-right px-1"
-                        style="font-size: 12px; clear: all;">
+                        <button onclick="restore()" type="button" id="btnrestore"
+                        class="mb-1 selectorbtn btn btn-sm btn-outline-dark ml-2 float-right">Reset/Show all
+                        </button>
+
+                        <div id="numberinput" class="float-right pt-1"
+                        style="font-size: 12px;">
                             <label for="inputNum" style="display:inline-block; font-size: 12px;">Show last</label>
                             <input type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1"
                                 max="7">
                             days.
                             </form>
                         </div>
+
+
+
+
+
+
 
 
 
@@ -352,10 +359,6 @@
                     <div class="col-md-4">
                             <div id="map">
                             </div>
-
-
-
-
                     </div>
 
                     <div class="col-md-8">
@@ -367,6 +370,8 @@
                                 </div>
                             </div>
                         </div>
+
+
 
 
 
