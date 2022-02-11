@@ -988,9 +988,11 @@
                     color: color_convert.to_hex(monitor_locations[i].Color)
                 });
                 
+                // adding monitor, specifying options
+                
                 var this_monitor = 
                     L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon})
-                    .bindTooltip(monitor.Location, {permanent: true, opacity: 0.8})
+                    .bindTooltip(monitor.Location, {permanent: true, interactive: true, opacity: 0.8})
                     .addTo(monitors_group)
 
                 // setting up zoom on click
