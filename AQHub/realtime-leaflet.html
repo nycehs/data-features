@@ -758,7 +758,7 @@
             event.preventDefault();
             inputNum = document.getElementById('inputNum').value;
 
-            // call updateChart
+            // call updateChart with number selection
             updateChart(inputNum);
             
         });
@@ -776,7 +776,7 @@
             
             shortTable = fullTable.slice(startingPoint, fullTable.length)
             
-            // redraw the chart by inserting shortTable into the spec
+            // redraw the chart by inserting truncated `shortTable` into the spec
 
             vegaEmbed("#vis2", current_spec).then((res) => {
                 
@@ -989,7 +989,7 @@
                 });
                 
                 // adding monitor, specifying options
-                
+
                 var this_monitor = 
                     L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon})
                     .bindTooltip(monitor.Location, {permanent: true, interactive: true, opacity: 0.8})
@@ -1054,8 +1054,6 @@
         // function to reset the map and chart to their original specs without reload
         //---------------------------------------------------------------------------//
 
-        // restore defaults
-
         function restore() {
 
             // chart vars
@@ -1072,10 +1070,6 @@
             
             resetZoom();
 
-            // close popups
-
-            monitors.forEach(monitor => {monitor.closePopup()})
-            
             // reset info box to be blank (like initial)
 
             document.getElementById('locInfoBox').outerHTML = locInfoBox;
@@ -1094,13 +1088,13 @@
                 // create 1-time use spec
                 restore_spec = $.extend({}, data);
 
-                // reset current_spec to default
+                // reset current_spec to original spec
                 current_spec = $.extend({}, data);
                 
                 // redraw the chart
                 vegaEmbed("#vis2", restore_spec).then((res) => {
                         
-                        res.view.insert("lineData", fullTable).run(); // shortTable is fullTable until updateChart is called
+                        res.view.insert("lineData", fullTable).run();
                         
                     });
 
