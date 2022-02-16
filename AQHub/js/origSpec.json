@@ -3,6 +3,7 @@
     "description": "Real-time air quality",
     "width": "container",
     "height": "container",
+    "padding": {"left": 0, "top": 10, "right": 0, "bottom": 25},
     "config": {
         "background": "#ffffff00",
         "axisX": {
@@ -38,12 +39,31 @@
                 "x": {
                     "field": "starttime",
                     "type": "temporal",
-                    "title": " "
+                    "title": "",
+                    "axis": {
+                        "offset": 0,
+                        "domainDashOffset": 30,
+                        "labelAlign": "center",
+                        "labelExpr": "[timeFormat(datum.value, '%H') == 0 ? timeFormat(datum.value, '%b %e') : timeFormat(datum.value, '%-I %p')]",
+                        "labelPadding": 4,
+                        "labelOverlap": "parity",
+                        "tickSize": {
+                            "condition": {"test": {"field": "value", "timeUnit": "hours", "equal": 0}, "value": 15},
+                            "value": 9
+                        },
+                        "tickWidth": {
+                            "condition": {"test": {"field": "value", "timeUnit": "hours", "equal": 0}, "value": 1.25},
+                            "value": 0.5
+                        }
+                    }
                 },
                 "y": {
                     "field": "Cross Bronx Expy",
                     "type": "quantitative",
-                    "title": " "
+                    "title": " ",
+                    "axis": {
+                        "offset": 10
+                    }
                 },
                 "color": {
                     "value": "purple"
