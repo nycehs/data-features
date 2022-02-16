@@ -14,81 +14,135 @@
     
     <title>Explore your neighborhood's air quality</title>
     
-    <!--Fontawesome Icons-->
+    <!-- Fontawesome Icons -->
     <link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/fontawesome/css/all.min.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-    <!--NYC Core Framework Theme-->
+
+    <!-- NYC Core Framework Theme -->
     <link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/css/theme.css">
-    <!--Custom additions for Portal items-->
+
+    <!-- Custom additions for Portal items -->
     <link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/css/custom.css">
-    
-    <!--AQE styles-->
+
+    <!-- AQE styles -->
     <link rel="stylesheet" href="css/aqe.css">
     
-    <!--Vega dependencies-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.11/core.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.8.7/polyfill.js"></script>
+    <!-- Vega dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/3.21.0/minified.js" 
+        integrity="sha512-jwK/Z0tBV7QTwDKxLIl5mM+JZ9g4o6eEsXE4p6DI3ZLLPuvWa9rzE19uB9FXTWiHFyaFScvI02RoM+YqQI0a4A=="
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.12.1/polyfill.min.js"
+        integrity="sha512-uzOpZ74myvXTYZ+mXUsPhDF+/iL/n32GDxdryI2SJronkEyKC8FBFRLiBQ7l7U/PTYebDbgTtbqTa6/vGtU23A=="
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.9/runtime.js" 
+        integrity="sha256-cgbPMYpxrAzVnXEP1jGN5btkfpWh1trahw7e0SKx8Oc=" 
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.6.2/dist/fetch.umd.js" 
+        integrity="sha256-+pQdxwAcHJdQ3e/9S4RK6g8ZkwdMgFQuHvLuN5uyk5c=" 
+        crossorigin="anonymous"></script>   
+
     <script src="https://vega.github.io/vega/assets/promise.min.js"></script>
     <script src="https://vega.github.io/vega/assets/symbol.min.js"></script>
     <script src="https://vega.github.io/vega/assets/fetch.min.js"></script>
+
+    <!-- Vega libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.21.0/build-es5/vega.min.js" 
+        integrity="sha256-5bLkFRD4G86vrztG8ztPy7KPjHyz5wZddWKeHzq0ZsE=" 
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0/build/vega-lite.min.js" 
+        integrity="sha256-roXmcY9bUF91uB9V+eSEUHEgfwoXe6B1xoDPuIe5ou8=" 
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.7/build-es5/vega-embed.min.js" 
+        integrity="sha256-y71r/4b+9r+dxpGlieM+cu+WJ3FI+d2WF/U5aVjIiZA=" 
+        crossorigin="anonymous"></script>
+
+    <!-- D3 -->
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.3.0/dist/d3.min.js" 
+        integrity="sha256-afYoXSIFAhNwQKRFhrZkSrYswZBMUtSLJetWCKjDHzQ=" 
+        crossorigin="anonymous"></script>
+
+    <!-- Arquero -->
+    <script src="https://cdn.jsdelivr.net/npm/arquero@4.8.8/dist/arquero.min.js" 
+        integrity="sha256-L+IllwJLoHj3ebxZXFZ0vb+aGMrR71J2ws7c8J4d51U=" 
+        crossorigin="anonymous"></script>
     
-    
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/vega@5/build-es5/vega.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4/build-es5/vega-lite.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6/build-es5/vega-embed.js"></script>
-    <!--D3-->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    
+    <!-- jQuery (full, compressed version) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" 
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+        crossorigin="anonymous"></script>
+
+    <!-- Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" 
+        integrity="sha256-/ijcOLwFf26xEYAjW75FizKVo5tnTYiQddPZoLUHHZ8=" 
+        crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" 
+        integrity="sha256-cMPWkL3FzjuaFSfEYESYmjF25hCIL6mfRSPnW8OVvM4=" 
+        crossorigin="anonymous"></script>
+
     <!-- leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-        crossorigin="" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" 
+        integrity="sha256-BPfK9M5v34c2XP6p0cxVz1mUQLst0gTLk0mlc7kuodA=" 
+        crossorigin="anonymous">    
     
     <!-- leaflet source -->
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-        crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js" 
+        integrity="sha256-yDc0eil8GjWFKqN1OSzHSVCiuGghTosZCcRje4tj7iQ=" 
+        crossorigin="anonymous"></script>    
     
+    <!-- leaflet map css -->
     <style>
         #map {
             height: 400px;
-            width: 600px;
+            width: 700px;
             max-width: 100%;
             max-height: 100%;
         }
     </style>
     
-    <!-- easybutton -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
-    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
-    
-    <!-- fontawesome -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <!-- leaflet easybutton -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2.4.0/src/easy-button.css" 
+        integrity="sha256-ceeoylCL0ld4NwOaXf4vG0Z8pEknXXuzJ5ZV0Ir6ft4=" 
+        crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2.4.0/src/easy-button.js" 
+        integrity="sha256-46nnM+JNAhwyXw6N+fnaZzFa9R20dVa8v0mdBgE9Nn8=" 
+        crossorigin="anonymous"></script>
     
     <!-- Leaflet.colorIcon -->
     <script src="js/L.colorIcon.js"></script>
     
     <!-- color name to hex converter -->
-    <script type="text/javascript" src="js/color-convert.js"></script>
-
+    <script src="js/color-convert.js"></script>
     
-    <!--Google Analytics script - use only on Production    -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-28636785-1"></script>
+    <!-- Google Analytics script - use only on Production -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-28636785-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        
         gtag('config', 'UA-28636785-1');
+    </script> -->
+
+    <!-- Google Translate -->
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en'
+            }, 'google_translate_element');
+        }
     </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     
 </head>
 
 <body>
-
-
 
     <!-- For keyboard users -->
     <a class="sr-only sr-only-focusable skip-menu" href="#skip-header-target">Skip Header</a>
@@ -242,12 +296,8 @@
             </form>
         </div>
 
-
-
-
     </header>
     <!-- #global-header -->
-
 
 
     <main id="skip-header-target" role="main" style="background-color:#f8f9fa;">
@@ -303,7 +353,6 @@
             <div class="container-fluid">
                 
                 <!-- location selection buttons -->
-                
                 <div class="row no-padding mt-4 mb-0">
                     
                     <div class="col-md-8 ml-auto">
@@ -338,11 +387,8 @@
                         <div id="numberinput" class="float-right pt-1"
                         style="font-size: 12px;">
                             <label for="inputNum" style="display:inline-block; font-size: 12px;">Show last</label>
-                            <!-- <input type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" -->
-                            <input inputmode="numeric" pattern="[0-9]*" type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1"
-                                max="7">
+                            <input type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" max="7">
                             days.
-                            </form>
                         </div>
 
 
@@ -352,7 +398,7 @@
                 
                 <!-- map element -->
                 <div class="row align-self-center">
-                    <div class="col-md-4 mt-2 pt-0">
+                    <div class="col-md-4 mt-2 mx-0">
                         <div id="map">
                         </div>
                     </div>
@@ -360,9 +406,9 @@
                     <!-- chart element -->
                     <div class="col-md-8">
                         <div class="row">
-                            <div class="col pl-2 mt-1">
-                                <em class="pl-2">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</em>
-                                <div id="vis2" style="width: 100%; height: 400px;" class="mt-1">
+                            <div class="col pl-0 mt-1">
+                                <em class="pl-1 mb-1">Hourly PM2.5 measurements (in µg/m<sup>3</sup>)</em>
+                                <div id="vis2" style="width: 100%; height: 400px;" class="mt-0">
                                     
                                 </div>
                             </div>
@@ -506,8 +552,8 @@
                 </div>
 
             </div>
-            <!-- #languages -->
 
+            <!-- #languages -->
             <div class="container py-3" id="languages">
 
                 <ul class="fs-md" role="list">
@@ -652,48 +698,30 @@
 
     </footer>
 
-    <!-- jQuery (full, compressed version) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-    <!-- Popper.js and Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-
-    <!-- Google Translate -->
+    <!-- drawing charts -->
     <script>
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en'
-            }, 'google_translate_element');
-        }
-    </script>
 
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <!--Arquero-->
-    <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
-    
-    <!--drawing charts-->
-    <script>
+        //---------------------------------------------------------------------------//
+        // initial chart drawing
+        //---------------------------------------------------------------------------//
         
         var current_spec;
         var dt;
         var fullTable;
         var shortTable;
-        var locSelect = "No location"
         
+        // load initial vega-lite spec
+
         d3.json("./js/origSpec.json").then(data => {
             
+            // `current_spec` will be used by all the charting functions, and also modified by 
+            //  `changeData`. This allows the location & time selections to be combined
+
             current_spec = $.extend({}, data);
             
         }).then(() => {
             
-            // Loads the csv as an arquero table
+            // Load the csv AQ data as an arquero table
             
             aq.loadCSV(
                 "https://raw.githubusercontent.com/nychealth/realtime-air-quality/main/RT_flat.csv"
@@ -703,57 +731,68 @@
                 fullTable = dt.objects(); // puts the data into fullTable to use. 
                 shortTable = fullTable; // creating an array we'll slice for time-selection
                 
+                // draw the chart, using the spec and the loaded data
+
                 vegaEmbed("#vis2", current_spec).then((res) => {
 
                     res.view.insert("lineData", fullTable).run()
-                    // current_spec = $.extend({}, res.spec);
-                    // console.log("current_spec === res.spec", current_spec === res.spec)
+                    res.view.renderer("svg")
                     
                 });
                 
             });
         });
         
+        //---------------------------------------------------------------------------//
+        // updating chart time (using `numberinput` div)
+        //---------------------------------------------------------------------------//
+
         var inputNum; // the number of days we want to select
         
-        // event listener on the time-selection form
+        // event listener on the time-selection input
+
         document.getElementById('inputNum').addEventListener('change', function (event) {
             event.preventDefault();
             inputNum = document.getElementById('inputNum').value;
+
+            // call updateChart with number selection
             updateChart(inputNum);
             
         });
         
-        
-        // this function updates the chart based on timeselection
+        // this function updates the chart to show a number of days, which comesfrom inputNum
+
         function updateChart(x) {
             
             var inputHours // hours in a day
-            inputHours = x * 24;
-            
             var startingPoint;
+
+            inputHours = x * 24;
             startingPoint = fullTable.length - inputHours;
-            // console.log('show chart for ' + inputHours + " hours");
+            console.log('show chart for ' + inputHours + " hours");
             
             shortTable = fullTable.slice(startingPoint, fullTable.length)
             
-            // inserts fullTable into the spec and draws the chart
+            // redraw the chart by inserting truncated `shortTable` into the spec
+
             vegaEmbed("#vis2", current_spec).then((res) => {
                 
                 res.view.insert("lineData", shortTable).run()
-                // current_spec = $.extend({}, res.spec);
-                console.log("current_spec === res.spec", current_spec === res.spec)
+                res.view.renderer("svg")
                 
             });
             
         }
+
         
-        // establish the spec that we'll manipulate and chart.
-        
-        // Grab the buttons for manipulation later
+        //---------------------------------------------------------------------------//
+        // updating location on chart & map
+        //---------------------------------------------------------------------------//
+
+        // Grab the location buttons for manipulation later
         var buttons = document.querySelectorAll('.selectorbtn');
         var buttons_orig = buttons;
-        var locSelect;
+        var locSelect = "No location"
         var color;
         
         // Save the original locInfoBox & locInfoDesc
@@ -761,12 +800,13 @@
         locInfoDesc = document.getElementById('locInfoDesc').innerHTML;
         
         // this function updates the chart based on the location selection
+
         function changeData(x) {
             
-            // zoom to the corresponding leaflet marker
+            // can use `x` because it indexes the same location in the button array and the monitor arrays
+            
+            // zoom to the corresponding leaflet marker and open its popup
             map.setView(monitors[x].getLatLng(), 13);
-
-            // open marker's popup
             monitors[x].openPopup();
             
             // create a color variable
@@ -777,11 +817,11 @@
             
             document.getElementById('locInfoDesc').innerHTML = locInfoDesc
             
-            // remove active class from buttons and add default class
+            // remove active class from all buttons and add default class
             buttons.forEach(button => button.classList.remove('btn-primary'))
             buttons.forEach(button => button.classList.add('btn-outline-primary'))
             
-            // add active class for selected button and remove default class
+            // now add active class and remove default class for selected button
             var btn = "btn" + x;
             document.getElementById(btn).classList.add('btn-primary');
             document.getElementById(btn).classList.remove('btn-outline-primary')
@@ -793,17 +833,18 @@
                 current_spec.layer[i].mark.point = false
             };
             
-            // style the selected series
+            // now style the selected series
             current_spec.layer[x].encoding.color.value = color
             current_spec.layer[x].mark.strokeWidth = 2.5
             current_spec.layer[x].mark.point = true
             
-            // redraw the chart
+            // redraw the chart using the updated spec and whatever value `shortTable` has 
+            //  (which is 'fullTable' until 'updateChart' is called)
+            
             vegaEmbed("#vis2", current_spec).then((res) => {
                 
-                res.view.insert("lineData", shortTable).run(); // shortTable is fullTable until updateChart is called
-                // current_spec = $.extend({}, res.spec);
-                // console.log("current_spec === res.spec", current_spec === res.spec);
+                res.view.insert("lineData", shortTable).run();
+                res.view.renderer("svg")
                 
             });
             
@@ -815,32 +856,30 @@
             
         }
         
+        
+        //---------------------------------------------------------------------------//
+        // getting 24-hour average and displaying it
+        //---------------------------------------------------------------------------//
 
         var avTable; // creating an abridged data table
         var selectedLoc;
         var arqTable;
         
-        // Here, we'll calculate the most recent 24-hour average for a selected neighborhood.
+        // Here, we'll calculate the most recent 24-hour average for a selected location, then show it in `locInfoBox`
+
         function getAverage() {
             
             var startAt = fullTable.length - 24; // get a starting point of most recent 24 hours
             avTable = fullTable.slice(startAt, fullTable.length) // slicing the table to most recent 24 hours
+            arqTable = aq.from(avTable); // make sure the table is in Arquero format
 
-            // document.getElementById('printTime').innerHTML = avTable[23].starttime
-
-            arqTable = aq.from(avTable);
-
-            // Filter by selected neighborhood
-
-            // document.getElementById('loc').innerHTML = locSelect
-
-            // deriving a new column `new_col` for the parsed selected column. I want the parsed column to have the 
-            //	selected column's name, so I'm creating a Map object which will rename "new_col" to the value of `locSelect`
+            // columns with NAs will be interpreted as character type, so we need to convert the selected column to numeric in order to
+            //  insure we can get the 24-hour average. Here we're deriving a new column `new_col` for the parsed selected column. I want 
+            //  the parsed column to have the selected column's name, so I can reference it with `locSelect`, and so I'm creating a Map 
+            //  object which will rename "new_col" to the value of `locSelect`
 
             const new_col = new Map()
-
             new_col.set("new_col", locSelect)
-            console.log("new_col:", new_col)
 
             // you can use an object that contains a variable name by enclosing the whole expression in back-ticks, then 
             //	using `${var}` to insert the value
@@ -849,8 +888,9 @@
             arqTable = arqTable
                 .derive({new_col: `d => aq.op.parse_float(d['${locSelect}'])`})
                 .rename(new_col)
+                .reify()
             
-            console.log("arqTable (after parse_float and rename):")
+            console.log("Last 24 hours:")
             arqTable.slice(-24,).print(Infinity)
             
             // Count number of valid entries.
@@ -907,12 +947,14 @@
                 document.getElementById('locInfoDesc').innerHTML = "<strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours."
 
             }
-
             // Note - this may be easier with long version; location-selection buttons can apply a filter to the long file, which we can then pipe into the chart. 
-            
         }
         
         
+        //---------------------------------------------------------------------------//
+        // creating leaflet map
+        //---------------------------------------------------------------------------//
+
         // function to reset zoom on click
         
         function resetZoom() {
@@ -927,6 +969,8 @@
         var monitors_center = L.Point();
         var monitors_bounds = L.Bounds();
         var monitor_locations;
+
+        // load monitor_locations.csv, then use it to add markers and define map bounds
         
         d3.csv("./data/monitor_locations.csv").then(data => {
             
@@ -943,10 +987,11 @@
                     color: color_convert.to_hex(monitor_locations[i].Color)
                 });
                 
+                // adding monitor, specifying options
+
                 var this_monitor = 
                     L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon})
-                    // .bindPopup(monitor.Location)
-                    .bindTooltip(monitor.Location, {permanent: true, opacity: 0.8})
+                    .bindTooltip(monitor.Location, {permanent: true, interactive: true, opacity: 0.8})
                     .addTo(monitors_group)
 
                 // setting up zoom on click
@@ -957,6 +1002,9 @@
                 });
                 
             });
+            
+            // get array of monitor layers
+            
             monitors = monitors_group.getLayers();
             
             // getting the bounds of the markers
@@ -967,7 +1015,7 @@
             
             monitors_center = monitors_bounds.getCenter();
             
-            // initiating the map object 
+            // initiating the map object, and using the monitor locations to set the view
             
             map = L.map('map').setView(monitors_center, 10).fitBounds(monitors_bounds);
 
@@ -983,9 +1031,7 @@
             
             monitors_group.addTo(map);
 
-            //---------------------------------------------------------------------------//
-            // easyButton to clear the markers and lines
-            //---------------------------------------------------------------------------//
+            // adding easyButton to zoom back out to all the points
             
             L.easyButton({
                 position: "bottomleft",
@@ -1002,23 +1048,27 @@
             
         });
         
-        // restore defaults
+        
+        //---------------------------------------------------------------------------//
+        // function to reset the map and chart to their original specs without reload
+        //---------------------------------------------------------------------------//
+
         function restore() {
 
             // chart vars
             
             locSelect = "No location";
-            inputNum = [];
+            inputNum = null;
             color = [];
+            
+            // resetting `shortTable` to `fullTable`
+
+            shortTable = fullTable;
             
             // reset map zoom
             
             resetZoom();
 
-            // close popups
-
-            monitors.forEach(monitor => {monitor.closePopup()})
-            
             // reset info box to be blank (like initial)
 
             document.getElementById('locInfoBox').outerHTML = locInfoBox;
@@ -1037,13 +1087,14 @@
                 // create 1-time use spec
                 restore_spec = $.extend({}, data);
 
-                // reset current_spec to default
+                // reset current_spec to original spec
                 current_spec = $.extend({}, data);
                 
                 // redraw the chart
                 vegaEmbed("#vis2", restore_spec).then((res) => {
                         
-                        res.view.insert("lineData", fullTable).run(); // shortTable is fullTable until updateChart is called
+                    res.view.insert("lineData", fullTable).run();
+                    res.view.renderer("svg")
                         
                     });
 

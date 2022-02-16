@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Corrects IE Compatibility Mode -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--D3-->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+
+    <!-- leaflet source -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+
+    <style>
+        #map {
+            height: 400px;
+            width: 600px;
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id = "map"></div>
+
+    <script>
+
+        console.log(this);
+
+        // function to zoom on click
+
+        function zoomToFeature(e) {
+            map.fitBounds(e.target.getBounds());
+        }
+
+        // creating variables for leaflet objects
+
+        var monitors = L.featureGroup();
+        var monitors_center = L.Point();
+        var monitors_bounds = L.Bounds();
+
+        d3.csv("./data/monitor_locations.csv").then(data => {
+
+            monitor_locations = data;
+
+            console.log("monitor_locations:", monitor_locations)
+
+            // adding each monitor to the feature group
+
+            monitor_locations.forEach(monitor => {
+                var this_monitor = L.marker([monitor.Latitude, monitor.Longitude], {title: monitor.Location}).addTo(monitors)
+
+                // setting up zoom on click
+
+                this_monitor.on('click', function (e) {
+                    map.setView(e.latlng, 13);
+                });
+
+            });
+
+            console.log("monitors inside:", monitors)
+
+            // getting the bounds of the markers
+
+            monitors_bounds = monitors.getBounds();
+            console.log("monitors_bounds inside:", monitors_bounds);
+
+            // now getting the center of the counds
+
+            monitors_center = monitors_bounds.getCenter();
+            console.log("monitors_center inside:", monitors_center);
+
+            // initiating the map object 
+
+            var map = L.map('map').setView(monitors_center, 10).fitBounds(monitors_bounds);
+
+            // adding a tile layer
+
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 20
+            }).addTo(map);
+
+            // adding the monitor markers to the map
+
+            monitors.addTo(map);
+
+        });
+
+    </script>
+
+</body>
+
+</html>
