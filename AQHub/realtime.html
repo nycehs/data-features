@@ -16,7 +16,6 @@
     
     <!--Fontawesome Icons-->
     <link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/fontawesome/css/all.min.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <!--NYC Core Framework Theme-->
     <link rel="stylesheet" href="https://nycehs.github.io/Portal-Core-Repo/css/theme.css">
     <!--Custom additions for Portal items-->
@@ -64,15 +63,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
     <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
     
-    <!-- fontawesome -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-    
     <!-- Leaflet.colorIcon -->
     <script src="js/L.colorIcon.js"></script>
     
     <!-- color name to hex converter -->
     <script type="text/javascript" src="js/color-convert.js"></script>
-
     
     <!--Google Analytics script - use only on Production    -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-28636785-1"></script>
@@ -87,7 +82,6 @@
 </head>
 
 <body>
-
 
 
     <!-- For keyboard users -->
@@ -332,19 +326,22 @@
                             </span>
                             Queens College</button>
                         
+                        <button onclick="changeData(4)" type="button" id="btn4" class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
+                            <span style="color: blue">
+                                <i class="fas fa-square mr-1"></i>
+                            </span>
+                            Williamsburg Bridge</button>
+                        
                         <button onclick="restore()" type="button" id="btnrestore" class="mb-1 selectorbtn btn btn-sm btn-outline-dark ml-2 float-right">
                             Reset/Show all</button>
 
                         <div id="numberinput" class="float-right pt-1"
                         style="font-size: 12px;">
                             <label for="inputNum" style="display:inline-block; font-size: 12px;">Show last</label>
-                            <!-- <input type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" -->
-                            <input inputmode="numeric" pattern="[0-9]*" type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1"
-                                max="7">
+                            <input inputmode="numeric" pattern="[0-9]*" type="number" style="display:inline-block" id="inputNum" name="inputNum" min="1" max="7">
                             days.
                             </form>
                         </div>
-
 
                     </div>
                     
@@ -391,6 +388,7 @@
             <div class="row px-0">
                 
             <div class="row mt-4">
+
                 <div class="col-md-6">
                     <h3>Air quality varies because sources vary</h3>
                     <p>In New York City, about 45% of PM2.5 comes from far-away sources, like coal-burning power plants
@@ -422,8 +420,6 @@
                                 produces additional pollutants.</p>
                         </div>
                     </div>
-                    
-                    
                 </div>
                 
                 <div class="col-md-6">
@@ -457,7 +453,9 @@
                             </div>
                         </div>
                 </div>
+
             </div>
+
         </div>
     </main>
 
@@ -679,6 +677,7 @@
     <script src="https://cdn.jsdelivr.net/npm/arquero@latest"></script>
     
     <!--drawing charts-->
+
     <script>
         
         var current_spec;
@@ -693,7 +692,7 @@
             
         }).then(() => {
             
-            // Loads the csv as an arquero table
+            // ---- Loads the csv as an arquero table ---- //
             
             aq.loadCSV(
                 "https://raw.githubusercontent.com/nychealth/realtime-air-quality/main/RT_flat.csv"
@@ -706,8 +705,6 @@
                 vegaEmbed("#vis2", current_spec).then((res) => {
 
                     res.view.insert("lineData", fullTable).run()
-                    // current_spec = $.extend({}, res.spec);
-                    // console.log("current_spec === res.spec", current_spec === res.spec)
                     
                 });
                 
@@ -725,7 +722,8 @@
         });
         
         
-        // this function updates the chart based on timeselection
+        // ---- this function updates the chart based on timeselection ---- //
+
         function updateChart(x) {
             
             var inputHours // hours in a day
@@ -741,14 +739,12 @@
             vegaEmbed("#vis2", current_spec).then((res) => {
                 
                 res.view.insert("lineData", shortTable).run()
-                // current_spec = $.extend({}, res.spec);
-                console.log("current_spec === res.spec", current_spec === res.spec)
                 
             });
             
         }
         
-        // establish the spec that we'll manipulate and chart.
+        // ---- establish the spec that we'll manipulate and chart ---- //
         
         // Grab the buttons for manipulation later
         var buttons = document.querySelectorAll('.selectorbtn');
@@ -761,6 +757,7 @@
         locInfoDesc = document.getElementById('locInfoDesc').innerHTML;
         
         // this function updates the chart based on the location selection
+
         function changeData(x) {
             
             // zoom to the corresponding leaflet marker
@@ -802,8 +799,6 @@
             vegaEmbed("#vis2", current_spec).then((res) => {
                 
                 res.view.insert("lineData", shortTable).run(); // shortTable is fullTable until updateChart is called
-                // current_spec = $.extend({}, res.spec);
-                // console.log("current_spec === res.spec", current_spec === res.spec);
                 
             });
             
@@ -821,18 +816,15 @@
         var arqTable;
         
         // Here, we'll calculate the most recent 24-hour average for a selected neighborhood.
+
         function getAverage() {
             
             var startAt = fullTable.length - 24; // get a starting point of most recent 24 hours
             avTable = fullTable.slice(startAt, fullTable.length) // slicing the table to most recent 24 hours
 
-            // document.getElementById('printTime').innerHTML = avTable[23].starttime
-
             arqTable = aq.from(avTable);
 
-            // Filter by selected neighborhood
-
-            // document.getElementById('loc').innerHTML = locSelect
+            // ---- Filter by selected neighborhood ---- //
 
             // deriving a new column `new_col` for the parsed selected column. I want the parsed column to have the 
             //	selected column's name, so I'm creating a Map object which will rename "new_col" to the value of `locSelect`
@@ -857,7 +849,7 @@
             valid_vals = aq.agg(arqTable, aq.op.valid(locSelect));
             console.log("valid_vals:", valid_vals)
             
-            // change info in locInfoBox depending on number of valid values
+            // ---- change info in locInfoBox depending on number of valid values ---- //
 
             if (valid_vals >= 18) {
                 
@@ -913,13 +905,13 @@
         }
         
         
-        // function to reset zoom on click
+        // ---- function to reset zoom on click ---- //
         
         function resetZoom() {
             map.setView(monitors_center, 11).fitBounds(monitors_bounds);
         }
         
-        // creating variables for leaflet objects
+        // ---- creating variables for leaflet objects ---- //
         
         var map;
         var monitors_group = L.featureGroup();
@@ -946,7 +938,7 @@
                 var this_monitor = 
                     L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon})
                     // .bindPopup(monitor.Location)
-                    .bindTooltip(monitor.Location, {permanent: true, opacity: 0.8})
+                    .bindTooltip(monitor.Location, {permanent: true, opacity: 0.8, interactive: true})
                     .addTo(monitors_group)
 
                 // setting up zoom on click
@@ -983,9 +975,7 @@
             
             monitors_group.addTo(map);
 
-            //---------------------------------------------------------------------------//
-            // easyButton to clear the markers and lines
-            //---------------------------------------------------------------------------//
+            // ---- easyButton to clear the markers and lines ---- //
             
             L.easyButton({
                 position: "bottomleft",
@@ -1002,7 +992,8 @@
             
         });
         
-        // restore defaults
+        // ---- restore defaults ---- //
+
         function restore() {
 
             // chart vars
