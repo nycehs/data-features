@@ -57,6 +57,11 @@
             max-width: 100%;
             max-height: 100%;
         }
+
+        leaflet-tooltip-box {
+            border: 1px solid
+        }
+
     </style>
     
     <!-- easybutton -->
@@ -936,10 +941,27 @@
                 });
                 
                 var this_monitor = 
-                    L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon})
-                    // .bindPopup(monitor.Location)
-                    .bindTooltip(monitor.Location, {permanent: true, opacity: 0.8, interactive: true})
+                    L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
+                    .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
                     .addTo(monitors_group)
+
+                // setting tooltip mouseover rise-to-top
+
+                var this_tooltip = this_monitor.getTooltip();
+                
+                this_monitor.on('mouseover', function (e) {
+
+                    this_tooltip._container.style.borderColor = color_convert.to_hex(monitor_locations[i].Color);
+                    this_tooltip.bringToFront();
+                    this_tooltip.setOpacity(1.0);
+                });
+
+                this_monitor.on('mouseout', function (e) {
+
+                    this_tooltip.setOpacity(0.85);
+                    this_tooltip._container.style.borderColor = "";
+
+                });
 
                 // setting up zoom on click
                 
@@ -949,6 +971,7 @@
                 });
                 
             });
+
             monitors = monitors_group.getLayers();
             
             // getting the bounds of the markers
