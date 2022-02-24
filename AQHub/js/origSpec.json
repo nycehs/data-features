@@ -205,6 +205,46 @@
                     }
                 ]
             }
+        },
+        {
+            "mark": {
+                "type": "line",
+                "point": false,
+                "tooltip": true,
+                "interpolate": "monotone",
+                "strokeWidth": 1.5
+            },
+            "encoding": {
+                "x": {
+                    "field": "starttime",
+                    "type": "temporal",
+                    "title": " "
+                },
+                "y": {
+                    "field": "Williamsburg Bridge",
+                    "type": "quantitative",
+                    "title": " "
+                },
+                "color": {
+                    "value": "blue"
+                },
+                "tooltip": [
+                    {
+                        "field": "Williamsburg Bridge",
+                        "title": "PM2.5 (µg/m3)"
+                    },
+                    {
+                        "field": "TOD",
+                        "type": "nominal",
+                        "title": "Time"
+                    },
+                    {
+                        "field": "starttime",
+                        "type": "temporal",
+                        "title": "Date"
+                    }
+                ]
+            }
         }
     ]
 }
