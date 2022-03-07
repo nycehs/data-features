@@ -146,7 +146,7 @@
                     "title": " "
                 },
                 "color": {
-                    "value": "green"
+                    "value": "limegreen"
                 },
                 "tooltip": [
                     {
@@ -231,6 +231,46 @@
                 "tooltip": [
                     {
                         "field": "Williamsburg Bridge",
+                        "title": "PM2.5 (µg/m3)"
+                    },
+                    {
+                        "field": "TOD",
+                        "type": "nominal",
+                        "title": "Time"
+                    },
+                    {
+                        "field": "starttime",
+                        "type": "temporal",
+                        "title": "Date"
+                    }
+                ]
+            }
+        },
+        {
+            "mark": {
+                "type": "line",
+                "point": false,
+                "tooltip": true,
+                "interpolate": "monotone",
+                "strokeWidth": 1.5
+            },
+            "encoding": {
+                "x": {
+                    "field": "starttime",
+                    "type": "temporal",
+                    "title": " "
+                },
+                "y": {
+                    "field": "Broadway/35th St",
+                    "type": "quantitative",
+                    "title": " "
+                },
+                "color": {
+                    "value": "violet"
+                },
+                "tooltip": [
+                    {
+                        "field": "Broadway/35th St",
                         "title": "PM2.5 (µg/m3)"
                     },
                     {
