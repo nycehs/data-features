@@ -57,6 +57,11 @@
             max-width: 100%;
             max-height: 100%;
         }
+
+        leaflet-tooltip-box {
+            border: 1px solid
+        }
+
     </style>
     
     <!-- easybutton -->
@@ -300,7 +305,10 @@
                 
                 <div class="row no-padding mt-4 mb-0">
                     
-                    <div class="col-md-8 ml-auto">
+                    <div class="col-12 ml-auto">
+
+                        <button onclick="restore()" type="button" id="btnrestore" class="mb-1 selectorbtn btn btn-sm btn-dark">
+                            Reset</button>
                         
                         <button onclick="changeData(0)" type="button" id="btn0" class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
                             <span style="color: purple">
@@ -315,7 +323,7 @@
                             Queensboro Bridge</button>
                             
                         <button onclick="changeData(2)" type="button" id="btn2" class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
-                            <span style="color: green">
+                            <span style="color: limegreen">
                                 <i class="fas fa-square mr-1"></i>
                             </span>
                             Manhattan Bridge</button>
@@ -332,8 +340,13 @@
                             </span>
                             Williamsburg Bridge</button>
                         
-                        <button onclick="restore()" type="button" id="btnrestore" class="mb-1 selectorbtn btn btn-sm btn-outline-dark ml-2 float-right">
-                            Reset/Show all</button>
+
+                        <button onclick="changeData(5)" type="button" id="btn5" class="mb-1 selectorbtn btn btn-sm btn-outline-primary">
+                            <span style="color: violet">
+                                <i class="fas fa-square mr-1"></i>
+                            </span>
+                            Broadway/35th St</button>
+                        
 
                         <div id="numberinput" class="float-right pt-1"
                         style="font-size: 12px;">
@@ -365,20 +378,32 @@
                             </div>
                         </div>
                         
+
+                        
+                    </div>
+                </div>
+
+                <style>
+                    .infobox {
+                        background-color: #f1f1f1;
+                        border-left: 5px solid darkblue;
+                        padding: 10px;
+                    }
+                </style>
+
+                <div class="row">
+                    <div class="col-12">
                         <!-- last 24-hour info box -->
-                        <div class="row mt-1" id="locInfoBox" style="display:none">
+                        <div class="infobox" id="locInfoBox" style="display:none">
                             <div id="locInfoDesc">
                                 
                                 <div class="col mx-1">
-                                    <p>Most recent 24-hour average: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">n/a</span> µg/m3</span>. This is <span id="comparison" class="badge badge-primary badge-custom">N/A</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom"></span></p>
-                                    <p class="fs-sm"><em>Readings of N/A may mean that a monitor is temporarily down. </em></p>
-                                    
+                                    <p>Most recent 24-hour average reading by this monitor: <span class="badge badge-primary badge-custom badge-custom-dark"><span id="24av">n/a</span> µg/m3</span>. This is <span id="comparison" class="badge badge-primary badge-custom">N/A</span> the <a href="https://www.epa.gov/criteria-air-pollutants/naaqs-table">national standard</a> of 35 µg/m3 for 24 hours. <span id="goodBad" class="badge badge-primary badge-custom"></span></p>                                    
                                 </div>
                                 
                             </div>
                             
                         </div>
-                        
                     </div>
                 </div>
             </div>
@@ -777,11 +802,13 @@
             // remove active class from buttons and add default class
             buttons.forEach(button => button.classList.remove('btn-primary'))
             buttons.forEach(button => button.classList.add('btn-outline-primary'))
+            document.getElementById("btnrestore").classList.remove('btn-outline-primary')
             
             // add active class for selected button and remove default class
             var btn = "btn" + x;
             document.getElementById(btn).classList.add('btn-primary');
             document.getElementById(btn).classList.remove('btn-outline-primary')
+            document.getElementById("btnrestore").classList.remove('btn-primary')
             
             // make all lines gray, thinner, and unmarked
             for (let i = 0; i < current_spec.layer.length; i++) {
@@ -896,7 +923,7 @@
                 
                 // If there are less than 18 valid values, print a 'no-value' message
 
-                document.getElementById('locInfoDesc').innerHTML = "<strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours."
+                document.getElementById('locInfoDesc').innerHTML = "<p class=fs-sm><strong>No value:</strong> sometimes monitors go down or have other problems. We only produce average values if there are more than 18 hourly readings over the last 24 hours.</p>"
 
             }
 
@@ -936,10 +963,27 @@
                 });
                 
                 var this_monitor = 
-                    L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon})
-                    // .bindPopup(monitor.Location)
-                    .bindTooltip(monitor.Location, {permanent: true, opacity: 0.8, interactive: true})
+                    L.marker([monitor.Latitude, monitor.Longitude], {icon: this_icon, riseOnHover: true, riseOffset: 2000})
+                    .bindTooltip(monitor.Location, {permanent: true, opacity: 0.85, interactive: true})
                     .addTo(monitors_group)
+
+                // setting tooltip mouseover rise-to-top
+
+                var this_tooltip = this_monitor.getTooltip();
+                
+                this_monitor.on('mouseover', function (e) {
+
+                    this_tooltip._container.style.borderColor = color_convert.to_hex(monitor_locations[i].Color);
+                    this_tooltip.bringToFront();
+                    this_tooltip.setOpacity(1.0);
+                });
+
+                this_monitor.on('mouseout', function (e) {
+
+                    this_tooltip.setOpacity(0.85);
+                    this_tooltip._container.style.borderColor = "";
+
+                });
 
                 // setting up zoom on click
                 
@@ -949,6 +993,7 @@
                 });
                 
             });
+
             monitors = monitors_group.getLayers();
             
             // getting the bounds of the markers
@@ -1018,7 +1063,8 @@
             // remove active class from buttons and add default class
 
             buttons.forEach(button => button.classList.remove('btn-primary'))
-            buttons.forEach(button => button.classList.add('btn-outline-primary'))        
+            buttons.forEach(button => button.classList.add('btn-outline-primary'))     
+            document.getElementById("btnrestore").classList.remove('btn-outline-primary')
 
             var restore_spec;
             
