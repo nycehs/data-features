@@ -341,7 +341,9 @@
 
 <div class="row mt-2">
     Select a year to view data: &nbsp;&nbsp;
-    <input type="radio" name="syn" onclick="udata(2021)" id="2021"checked="checked"><label for="2021">&nbsp;2021</label> &nbsp;&nbsp;&nbsp;
+    <input type="radio" name="syn" onclick="udata(2022)" id="2022"checked="checked"><label for="2022">&nbsp;2022</label> &nbsp;&nbsp;&nbsp;
+
+    <input type="radio" name="syn" onclick="udata(2021)" id="2021"><label for="2021">&nbsp;2021</label> &nbsp;&nbsp;&nbsp;
     <input type="radio" name="syn" onclick="udata(2020)" id="2020"><label for="2020">&nbsp;2020</label> &nbsp;&nbsp;&nbsp;
     <input type="radio" name="syn" onclick="udata(2019)" id="2019"><label for="2019">&nbsp;2019</label> &nbsp;&nbsp;&nbsp;
     <input type="radio" name="syn" onclick="udata(2018)" id="2018"/><label for="2018">&nbsp;2018</label> &nbsp;&nbsp;&nbsp;
@@ -349,22 +351,25 @@
 
 </div>
     
+<div id="if2022" style="display:block" class="row border-bottom my-2">
+    2022 data coming shortly.
+</div>
 
 
 
-<div id="if2021" style="display:block" class="row border-bottom my-2">
-    <iframe title="2021 Heat ED Visits" aria-label="Interactive line chart" id="datawrapper-chart-tfWhM" src="https://datawrapper.dwcdn.net/tfWhM/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="700"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+<div id="if2021" style="display:none" class="row border-bottom my-2">
+    <iframe title="2021 Heat ED Visits" aria-label="Interactive line chart" id="datawrapper-chart-tfWhM" src="https://datawrapper.dwcdn.net/tfWhM/6/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="650"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
     </script>
 </div>
 
 <div id="if2020" style="display:none" class="row border-bottom my-2">
-    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-AOztc" src="https://datawrapper.dwcdn.net/AOztc/15/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="800"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
+    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-AOztc" src="https://datawrapper.dwcdn.net/AOztc/15/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="650"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}}))}();
     </script>
 
 </div>
 
 <div id="if2019" style="display:none" class="row border-bottom my-2">
-    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-Rokvl" src="//datawrapper.dwcdn.net/Rokvl/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="800"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-Rokvl" src="//datawrapper.dwcdn.net/Rokvl/4/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="650"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
     </script>
 
  </div>
@@ -373,13 +378,13 @@
 
 
 <div id="if2018" style="display:none" class="row border-bottom my-2">
-    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-KGk7o" src="//datawrapper.dwcdn.net/KGk7o/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="800"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-KGk7o" src="//datawrapper.dwcdn.net/KGk7o/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="650"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
     </script>
 
  </div>
 
  <div id="if2017" style="display:none" class="row border-bottom my-2">
-    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-pDamD" src="//datawrapper.dwcdn.net/pDamD/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="800"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
+    <iframe title="" aria-label="Interactive line chart" id="datawrapper-chart-pDamD" src="//datawrapper.dwcdn.net/pDamD/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="650"></iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",function(a){if(void 0!==a.data["datawrapper-height"])for(var e in a.data["datawrapper-height"]){var t=document.getElementById("datawrapper-chart-"+e)||document.querySelector("iframe[src*='"+e+"']");t&&(t.style.height=a.data["datawrapper-height"][e]+"px")}})}();
     </script>
 
  </div>
@@ -444,6 +449,7 @@
  <script>
 
         function udata(x) {
+            document.getElementById('if2022').style.display = "none";
             document.getElementById('if2021').style.display = "none";
             document.getElementById('if2020').style.display = "none";
             document.getElementById('if2019').style.display = "none";
@@ -461,7 +467,11 @@
                 document.getElementById('if2020').style.display = "block";
             } else if (x==2021) {
                 document.getElementById('if2021').style.display = "block";
-            } else {
+            } else if (x==2022) {
+                document.getElementById('if2022').style.display = "block";
+
+            }
+            else {
                 document.getElementById('ifScatter').style.display = "block";
             }
 
